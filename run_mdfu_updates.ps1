@@ -1,5 +1,5 @@
 param(
-    [string]$PymdfuExe = "C:\Users\I73904\AppData\Roaming\Python\Python311\Scripts\pymdfu.exe",
+    [string]$PymdfuExe = "C:\Users\<username>\AppData\Roaming\Python\Python311\Scripts\pymdfu.exe",
     [string]$ComPort = "COM29",
     [int[]]$UartBauds = @(2400, 4800, 9600, 19200, 38400, 57600, 115200, 230400, 460800, 921600),
     [int[]]$SpiSpeeds = @(187500, 375000, 750000, 1500000, 3000000, 6000000, 12000000),

@@ -54,13 +54,13 @@ MDFU protocol version 1.3.0
 The working `pymdfu.exe` path was:
 
 ```text
-C:\Users\I73904\AppData\Roaming\Python\Python311\Scripts\pymdfu.exe
+C:\Users\<username>\AppData\Roaming\Python\Python311\Scripts\pymdfu.exe
 ```
 
 To verify that the installed `pymdfu` supports MCP2222:
 
 ```cmd
-C:\Users\I73904\AppData\Roaming\Python\Python311\Scripts\pymdfu.exe tools-help
+C:\Users\<username>\AppData\Roaming\Python\Python311\Scripts\pymdfu.exe tools-help
 ```
 
 The output must include:
@@ -152,19 +152,19 @@ I2C CRC32 bootloader  -> I2C CRC32 application image
 ### UART MDFU Client Project
 
 ```text
-C:\Users\I73904\Downloads\avr128da48-cnano-8bit-mdfu-client-mplab-mcc-master\avr128da48-cnano-8bit-mdfu-client-mplab-mcc-master\uart\crc32\avr128da48-mdfu-client-crc32.X
+~/avr128da48-cnano-8bit-mdfu-client-mplab-mcc-master/uart/crc32/avr128da48-mdfu-client-crc32.X
 ```
 
 ### SPI MDFU Client Project
 
 ```text
-C:\Users\I73904\Downloads\avr128da48-cnano-8bit-mdfu-client-mplab-mcc-master\avr128da48-cnano-8bit-mdfu-client-mplab-mcc-master\spi\avr128da48-mdfu-client-crc32.X
+~/avr128da48-cnano-8bit-mdfu-client-mplab-mcc-master/spi/avr128da48-mdfu-client-crc32.X
 ```
 
 ### I<sup>2</sup>C MDFU Client Project
 
 ```text
-C:\Users\I73904\Downloads\avr128da48-cnano-8bit-mdfu-client-mplab-mcc-master\avr128da48-cnano-8bit-mdfu-client-mplab-mcc-master\i2c\avr128da48-mdfu-client-crc32.X
+~/avr128da48-cnano-8bit-mdfu-client-mplab-mcc-master/i2c/avr128da48-mdfu-client-crc32.X
 ```
 
 ---
@@ -174,19 +174,19 @@ C:\Users\I73904\Downloads\avr128da48-cnano-8bit-mdfu-client-mplab-mcc-master\avr
 ### UART Bootloader HEX
 
 ```text
-C:\Users\I73904\Downloads\avr128da48-cnano-8bit-mdfu-client-mplab-mcc-master\avr128da48-cnano-8bit-mdfu-client-mplab-mcc-master\uart\crc32\avr128da48-mdfu-client-crc32.X\dist\free\production\avr128da48-mdfu-client-crc32.X.production.hex
+~/avr128da48-cnano-8bit-mdfu-client-mplab-mcc-master/uart/crc32/avr128da48-mdfu-client-crc32.X/dist/free/production/avr128da48-mdfu-client-crc32.X.production.hex
 ```
 
 ### SPI Bootloader HEX
 
 ```text
-C:\Users\I73904\Downloads\avr128da48-cnano-8bit-mdfu-client-mplab-mcc-master\avr128da48-cnano-8bit-mdfu-client-mplab-mcc-master\spi\avr128da48-mdfu-client-crc32.X\dist\free\production\avr128da48-mdfu-client-crc32.X.production.hex
+~/avr128da48-cnano-8bit-mdfu-client-mplab-mcc-master/spi/avr128da48-mdfu-client-crc32.X/dist/free/production/avr128da48-mdfu-client-crc32.X.production.hex
 ```
 
 ### I<sup>2</sup>C Bootloader HEX
 
 ```text
-C:\Users\I73904\Downloads\avr128da48-cnano-8bit-mdfu-client-mplab-mcc-master\avr128da48-cnano-8bit-mdfu-client-mplab-mcc-master\i2c\avr128da48-mdfu-client-crc32.X\dist\free\production\avr128da48-mdfu-client-crc32.X.production.hex
+~/avr128da48-cnano-8bit-mdfu-client-mplab-mcc-master/i2c/avr128da48-mdfu-client-crc32.X/dist/free/production/avr128da48-mdfu-client-crc32.X.production.hex
 ```
 
 ---
@@ -196,19 +196,19 @@ C:\Users\I73904\Downloads\avr128da48-cnano-8bit-mdfu-client-mplab-mcc-master\avr
 ### UART Application Image
 
 ```text
-C:\Users\I73904\Downloads\avr128da48-cnano-8bit-mdfu-client-mplab-mcc-master\avr128da48-cnano-8bit-mdfu-client-mplab-mcc-master\uart\crc32\avr128da48-application-crc32.X\new_application.img
+~/avr128da48-cnano-8bit-mdfu-client-mplab-mcc-master/uart/crc32/avr128da48-application-crc32.X/new_application.img
 ```
 
 ### SPI Application Image
 
 ```text
-C:\Users\I73904\Downloads\avr128da48-cnano-8bit-mdfu-client-mplab-mcc-master\avr128da48-cnano-8bit-mdfu-client-mplab-mcc-master\spi\avr128da48-application-crc32.X\new_application.img
+~/avr128da48-cnano-8bit-mdfu-client-mplab-mcc-master/spi/avr128da48-application-crc32.X/new_application.img
 ```
 
 ### I<sup>2</sup>C Application Image
 
 ```text
-C:\Users\I73904\Downloads\avr128da48-cnano-8bit-mdfu-client-mplab-mcc-master\avr128da48-cnano-8bit-mdfu-client-mplab-mcc-master\i2c\avr128da48-application-crc32.X\new_application.img
+~/avr128da48-cnano-8bit-mdfu-client-mplab-mcc-master/i2c/avr128da48-application-crc32.X/new_application.img
 ```
 
 ---
@@ -467,7 +467,7 @@ Upgrade finished successfully
 Run this first:
 
 ```cmd
-C:\Users\I73904\AppData\Roaming\Python\Python311\Scripts\pymdfu.exe -v debug client-info --tool serial --port COM29 --baudrate 9600
+C:\Users\<username>\AppData\Roaming\Python\Python311\Scripts\pymdfu.exe -v debug client-info --tool serial --port COM29 --baudrate 9600
 ```
 
 Expected result:
@@ -479,7 +479,7 @@ MDFU client information
 ### UART Firmware Update
 
 ```cmd
-C:\Users\I73904\AppData\Roaming\Python\Python311\Scripts\pymdfu.exe -v debug update --tool serial --port COM29 --baudrate 9600 --image "C:\Users\I73904\Downloads\avr128da48-cnano-8bit-mdfu-client-mplab-mcc-master\avr128da48-cnano-8bit-mdfu-client-mplab-mcc-master\uart\crc32\avr128da48-application-crc32.X\new_application.img"
+C:\Users\<username>\AppData\Roaming\Python\Python311\Scripts\pymdfu.exe -v debug update --tool serial --port COM29 --baudrate 9600 --image "~/avr128da48-cnano-8bit-mdfu-client-mplab-mcc-master/uart/crc32/avr128da48-application-crc32.X/new_application.img"
 ```
 
 Expected success message:
@@ -497,7 +497,7 @@ Upgrade finished successfully
 Run this first:
 
 ```cmd
-C:\Users\I73904\AppData\Roaming\Python\Python311\Scripts\pymdfu.exe -v debug client-info --tool mcp2222 --interface spi --clk-speed 375_000 --mode 0 --cs-pin 0 --cs-polarity low --delay 500
+C:\Users\<username>\AppData\Roaming\Python\Python311\Scripts\pymdfu.exe -v debug client-info --tool mcp2222 --interface spi --clk-speed 375_000 --mode 0 --cs-pin 0 --cs-polarity low --delay 500
 ```
 
 Expected result:
@@ -519,7 +519,7 @@ Default timeout: 10.0 seconds
 ### SPI Firmware Update
 
 ```cmd
-C:\Users\I73904\AppData\Roaming\Python\Python311\Scripts\pymdfu.exe -v debug update --tool mcp2222 --interface spi --image "C:\Users\I73904\Downloads\avr128da48-cnano-8bit-mdfu-client-mplab-mcc-master\avr128da48-cnano-8bit-mdfu-client-mplab-mcc-master\spi\avr128da48-application-crc32.X\new_application.img" --clk-speed 375_000 --mode 0 --cs-pin 0 --cs-polarity low --delay 500
+C:\Users\<username>\AppData\Roaming\Python\Python311\Scripts\pymdfu.exe -v debug update --tool mcp2222 --interface spi --image "~/avr128da48-cnano-8bit-mdfu-client-mplab-mcc-master/spi/avr128da48-application-crc32.X/new_application.img" --clk-speed 375_000 --mode 0 --cs-pin 0 --cs-polarity low --delay 500
 ```
 
 Expected success message:
@@ -562,7 +562,7 @@ This indicates that the received image was valid.
 Run this first:
 
 ```cmd
-C:\Users\I73904\AppData\Roaming\Python\Python311\Scripts\pymdfu.exe -v debug client-info --tool mcp2222 --interface i2c --clk-speed 100_000 --address 32
+C:\Users\<username>\AppData\Roaming\Python\Python311\Scripts\pymdfu.exe -v debug client-info --tool mcp2222 --interface i2c --clk-speed 100_000 --address 32
 ```
 
 Equivalent address format:
@@ -574,7 +574,7 @@ Equivalent address format:
 ### I<sup>2</sup>C Firmware Update
 
 ```cmd
-C:\Users\I73904\AppData\Roaming\Python\Python311\Scripts\pymdfu.exe -v debug update --tool mcp2222 --interface i2c --clk-speed 100_000 --address 32 --image "C:\Users\I73904\Downloads\avr128da48-cnano-8bit-mdfu-client-mplab-mcc-master\avr128da48-cnano-8bit-mdfu-client-mplab-mcc-master\i2c\avr128da48-application-crc32.X\new_application.img"
+C:\Users\<username>\AppData\Roaming\Python\Python311\Scripts\pymdfu.exe -v debug update --tool mcp2222 --interface i2c --clk-speed 100_000 --address 32 --image "~/avr128da48-cnano-8bit-mdfu-client-mplab-mcc-master/i2c/avr128da48-application-crc32.X/new_application.img"
 ```
 
 Expected success message:
@@ -610,7 +610,7 @@ Known-good validated SPI speed:
 Known-good validated SPI command:
 
 ```cmd
-C:\Users\I73904\AppData\Roaming\Python\Python311\Scripts\pymdfu.exe -v debug update --tool mcp2222 --interface spi --image "C:\Users\I73904\Downloads\avr128da48-cnano-8bit-mdfu-client-mplab-mcc-master\avr128da48-cnano-8bit-mdfu-client-mplab-mcc-master\spi\avr128da48-application-crc32.X\new_application.img" --clk-speed 375_000 --mode 0 --cs-pin 0 --cs-polarity low --delay 500
+C:\Users\<username>\AppData\Roaming\Python\Python311\Scripts\pymdfu.exe -v debug update --tool mcp2222 --interface spi --image "~/avr128da48-cnano-8bit-mdfu-client-mplab-mcc-master/spi/avr128da48-application-crc32.X/new_application.img" --clk-speed 375_000 --mode 0 --cs-pin 0 --cs-polarity low --delay 500
 ```
 
 ---
@@ -634,7 +634,7 @@ Recommended initial I<sup>2</sup>C test speed:
 Known command format:
 
 ```cmd
-C:\Users\I73904\AppData\Roaming\Python\Python311\Scripts\pymdfu.exe -v debug update --tool mcp2222 --interface i2c --clk-speed 100_000 --address 32 --image "C:\Users\I73904\Downloads\avr128da48-cnano-8bit-mdfu-client-mplab-mcc-master\avr128da48-cnano-8bit-mdfu-client-mplab-mcc-master\i2c\avr128da48-application-crc32.X\new_application.img"
+C:\Users\<username>\AppData\Roaming\Python\Python311\Scripts\pymdfu.exe -v debug update --tool mcp2222 --interface i2c --clk-speed 100_000 --address 32 --image "~/avr128da48-cnano-8bit-mdfu-client-mplab-mcc-master/i2c/avr128da48-application-crc32.X/new_application.img"
 ```
 
 ---
@@ -656,7 +656,7 @@ USART1.BAUD = (uint16_t)USART1_BAUD_RATE(9600UL);
 Known command format:
 
 ```cmd
-C:\Users\I73904\AppData\Roaming\Python\Python311\Scripts\pymdfu.exe -v debug update --tool serial --port COM29 --baudrate 9600 --image "C:\Users\I73904\Downloads\avr128da48-cnano-8bit-mdfu-client-mplab-mcc-master\avr128da48-cnano-8bit-mdfu-client-mplab-mcc-master\uart\crc32\avr128da48-application-crc32.X\new_application.img"
+C:\Users\<username>\AppData\Roaming\Python\Python311\Scripts\pymdfu.exe -v debug update --tool serial --port COM29 --baudrate 9600 --image "~/avr128da48-cnano-8bit-mdfu-client-mplab-mcc-master/uart/crc32/avr128da48-application-crc32.X/new_application.img"
 ```
 
 ---
@@ -670,7 +670,7 @@ Verified that the installed `pymdfu` supports MCP2222.
 Command:
 
 ```cmd
-C:\Users\I73904\AppData\Roaming\Python\Python311\Scripts\pymdfu.exe tools-help
+C:\Users\<username>\AppData\Roaming\Python\Python311\Scripts\pymdfu.exe tools-help
 ```
 
 Confirmed supported tools include:
@@ -701,7 +701,7 @@ Product Name=MCP2222 USB Bridge
 Command:
 
 ```cmd
-C:\Users\I73904\AppData\Roaming\Python\Python311\Scripts\pymdfu.exe -v debug client-info --tool mcp2222 --interface spi --clk-speed 375_000 --mode 0 --cs-pin 0 --cs-polarity low --delay 500
+C:\Users\<username>\AppData\Roaming\Python\Python311\Scripts\pymdfu.exe -v debug client-info --tool mcp2222 --interface spi --clk-speed 375_000 --mode 0 --cs-pin 0 --cs-polarity low --delay 500
 ```
 
 Result:
@@ -717,7 +717,7 @@ MDFU client information received successfully
 Command:
 
 ```cmd
-C:\Users\I73904\AppData\Roaming\Python\Python311\Scripts\pymdfu.exe -v debug update --tool mcp2222 --interface spi --image "C:\Users\I73904\Downloads\avr128da48-cnano-8bit-mdfu-client-mplab-mcc-master\avr128da48-cnano-8bit-mdfu-client-mplab-mcc-master\spi\avr128da48-application-crc32.X\new_application.img" --clk-speed 375_000 --mode 0 --cs-pin 0 --cs-polarity low --delay 500
+C:\Users\<username>\AppData\Roaming\Python\Python311\Scripts\pymdfu.exe -v debug update --tool mcp2222 --interface spi --image "~/avr128da48-cnano-8bit-mdfu-client-mplab-mcc-master/spi/avr128da48-application-crc32.X/new_application.img" --clk-speed 375_000 --mode 0 --cs-pin 0 --cs-polarity low --delay 500
 ```
 
 Result:
@@ -779,7 +779,7 @@ MCP2222 GND -> GND
 The commands use the full path to `pymdfu.exe`:
 
 ```text
-C:\Users\I73904\AppData\Roaming\Python\Python311\Scripts\pymdfu.exe
+C:\Users\<username>\AppData\Roaming\Python\Python311\Scripts\pymdfu.exe
 ```
 
 Therefore, the commands can be run from any directory.
@@ -788,7 +788,7 @@ Example:
 
 ```cmd
 cd C:\
-C:\Users\I73904\AppData\Roaming\Python\Python311\Scripts\pymdfu.exe --version
+C:\Users\<username>\AppData\Roaming\Python\Python311\Scripts\pymdfu.exe --version
 ```
 
 To use only:
@@ -800,7 +800,7 @@ pymdfu
 instead of the full path, add this directory to the Windows PATH:
 
 ```text
-C:\Users\I73904\AppData\Roaming\Python\Python311\Scripts
+C:\Users\<username>\AppData\Roaming\Python\Python311\Scripts
 ```
 
 Then open a new Command Prompt and verify:

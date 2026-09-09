@@ -1,7 +1,7 @@
 [2026-07-09 13:35:32] MDFU update run started
-[2026-07-09 13:37:35] COMMAND: C:\Users\I73904\AppData\Roaming\Python\Python311\Scripts\pymdfu.exe -v debug update --tool serial --port COM29 --baudrate 2400 --image C:\Users\I73904\Downloads\avr128da48-cnano-8bit-mdfu-client-mplab-mcc-master\avr128da48-cnano-8bit-mdfu-client-mplab-mcc-master\uart\crc32\avr128da48-application-crc32.X\new_application.img
+[2026-07-09 13:37:35] COMMAND: C:\Users\<username>\AppData\Roaming\Python\Python311\Scripts\pymdfu.exe -v debug update --tool serial --port COM29 --baudrate 2400 --image ~/avr128da48-cnano-8bit-mdfu-client-mplab-mcc-master/uart/crc32/avr128da48-application-crc32.X/new_application.img
 [2026-07-09 13:37:51] pymdfu - DEBUG - Common arguments: Namespace(verbose='debug', help=False, version=False, release_info=False)
-pymdfu - DEBUG - Action arguments: Namespace(action='update', tool='serial', image='C:\\Users\\I73904\\Downloads\\avr128da48-cnano-8bit-mdfu-client-mplab-mcc-master\\avr128da48-cnano-8bit-mdfu-client-mplab-mcc-master\\uart\\crc32\\avr128da48-application-crc32.X\\new_application.img', retries=5, func=<function update at 0x000002C42E111080>)
+pymdfu - DEBUG - Action arguments: Namespace(action='update', tool='serial', image='~/avr128da48-cnano-8bit-mdfu-client-mplab-mcc-master/uart/crc32/avr128da48-application-crc32.X/new_application.img', retries=5, func=<function update at 0x000002C42E111080>)
 pymdfu - DEBUG - Tool arguments: ['--port', 'COM29', '--baudrate', '2400']
 pymdfu.MdfuHost - DEBUG - Sending MDFU command packet:
 Command:         GET_CLIENT_INFO (0x1)
@@ -244,9 +244,9 @@ Update Progress: 100%|##########| [00:12<00:00]
 
 Update Progress: 100%|##########| [00:12<00:00]
 Update Progress: 100%|##########| [00:12<00:00]
-[2026-07-09 13:38:19] COMMAND: C:\Users\I73904\AppData\Roaming\Python\Python311\Scripts\pymdfu.exe -v debug update --tool serial --port COM29 --baudrate 4800 --image C:\Users\I73904\Downloads\avr128da48-cnano-8bit-mdfu-client-mplab-mcc-master\avr128da48-cnano-8bit-mdfu-client-mplab-mcc-master\uart\crc32\avr128da48-application-crc32.X\new_application.img
+[2026-07-09 13:38:19] COMMAND: C:\Users\<username>\AppData\Roaming\Python\Python311\Scripts\pymdfu.exe -v debug update --tool serial --port COM29 --baudrate 4800 --image ~/avr128da48-cnano-8bit-mdfu-client-mplab-mcc-master/uart/crc32/avr128da48-application-crc32.X/new_application.img
 [2026-07-09 13:38:33] pymdfu - DEBUG - Common arguments: Namespace(verbose='debug', help=False, version=False, release_info=False)
-pymdfu - DEBUG - Action arguments: Namespace(action='update', tool='serial', image='C:\\Users\\I73904\\Downloads\\avr128da48-cnano-8bit-mdfu-client-mplab-mcc-master\\avr128da48-cnano-8bit-mdfu-client-mplab-mcc-master\\uart\\crc32\\avr128da48-application-crc32.X\\new_application.img', retries=5, func=<function update at 0x000001B092DF1080>)
+pymdfu - DEBUG - Action arguments: Namespace(action='update', tool='serial', image='~/avr128da48-cnano-8bit-mdfu-client-mplab-mcc-master/uart/crc32/avr128da48-application-crc32.X/new_application.img', retries=5, func=<function update at 0x000001B092DF1080>)
 pymdfu - DEBUG - Tool arguments: ['--port', 'COM29', '--baudrate', '4800']
 pymdfu.MdfuHost - DEBUG - Sending MDFU command packet:
 Command:         GET_CLIENT_INFO (0x1)
@@ -489,9 +489,9 @@ Update Progress: 100%|##########| [00:07<00:00]
 
 Update Progress: 100%|##########| [00:07<00:00]
 Update Progress: 100%|##########| [00:08<00:00]
-[2026-07-09 13:39:10] COMMAND: C:\Users\I73904\AppData\Roaming\Python\Python311\Scripts\pymdfu.exe -v debug update --tool serial --port COM29 --baudrate 9600 --image C:\Users\I73904\Downloads\avr128da48-cnano-8bit-mdfu-client-mplab-mcc-master\avr128da48-cnano-8bit-mdfu-client-mplab-mcc-master\uart\crc32\avr128da48-application-crc32.X\new_application.img
+[2026-07-09 13:39:10] COMMAND: C:\Users\<username>\AppData\Roaming\Python\Python311\Scripts\pymdfu.exe -v debug update --tool serial --port COM29 --baudrate 9600 --image ~/avr128da48-cnano-8bit-mdfu-client-mplab-mcc-master/uart/crc32/avr128da48-application-crc32.X/new_application.img
 [2026-07-09 13:39:20] pymdfu - DEBUG - Common arguments: Namespace(verbose='debug', help=False, version=False, release_info=False)
-pymdfu - DEBUG - Action arguments: Namespace(action='update', tool='serial', image='C:\\Users\\I73904\\Downloads\\avr128da48-cnano-8bit-mdfu-client-mplab-mcc-master\\avr128da48-cnano-8bit-mdfu-client-mplab-mcc-master\\uart\\crc32\\avr128da48-application-crc32.X\\new_application.img', retries=5, func=<function update at 0x00000207C5821080>)
+pymdfu - DEBUG - Action arguments: Namespace(action='update', tool='serial', image='~/avr128da48-cnano-8bit-mdfu-client-mplab-mcc-master/uart/crc32/avr128da48-application-crc32.X/new_application.img', retries=5, func=<function update at 0x00000207C5821080>)
 pymdfu - DEBUG - Tool arguments: ['--port', 'COM29', '--baudrate', '9600']
 pymdfu.MdfuHost - DEBUG - Sending MDFU command packet:
 Command:         GET_CLIENT_INFO (0x1)
@@ -734,9 +734,9 @@ Update Progress: 100%|##########| [00:05<00:00]
 
 Update Progress: 100%|##########| [00:05<00:00]
 Update Progress: 100%|##########| [00:05<00:00]
-[2026-07-09 13:39:38] COMMAND: C:\Users\I73904\AppData\Roaming\Python\Python311\Scripts\pymdfu.exe -v debug update --tool serial --port COM29 --baudrate 19200 --image C:\Users\I73904\Downloads\avr128da48-cnano-8bit-mdfu-client-mplab-mcc-master\avr128da48-cnano-8bit-mdfu-client-mplab-mcc-master\uart\crc32\avr128da48-application-crc32.X\new_application.img
+[2026-07-09 13:39:38] COMMAND: C:\Users\<username>\AppData\Roaming\Python\Python311\Scripts\pymdfu.exe -v debug update --tool serial --port COM29 --baudrate 19200 --image ~/avr128da48-cnano-8bit-mdfu-client-mplab-mcc-master/uart/crc32/avr128da48-application-crc32.X/new_application.img
 [2026-07-09 13:39:50] pymdfu - DEBUG - Common arguments: Namespace(verbose='debug', help=False, version=False, release_info=False)
-pymdfu - DEBUG - Action arguments: Namespace(action='update', tool='serial', image='C:\\Users\\I73904\\Downloads\\avr128da48-cnano-8bit-mdfu-client-mplab-mcc-master\\avr128da48-cnano-8bit-mdfu-client-mplab-mcc-master\\uart\\crc32\\avr128da48-application-crc32.X\\new_application.img', retries=5, func=<function update at 0x00000254D03F1080>)
+pymdfu - DEBUG - Action arguments: Namespace(action='update', tool='serial', image='~/avr128da48-cnano-8bit-mdfu-client-mplab-mcc-master/uart/crc32/avr128da48-application-crc32.X/new_application.img', retries=5, func=<function update at 0x00000254D03F1080>)
 pymdfu - DEBUG - Tool arguments: ['--port', 'COM29', '--baudrate', '19200']
 pymdfu.MdfuHost - DEBUG - Sending MDFU command packet:
 Command:         GET_CLIENT_INFO (0x1)
@@ -979,9 +979,9 @@ Update Progress: 100%|##########| [00:04<00:00]
 
 Update Progress: 100%|##########| [00:04<00:00]
 Update Progress: 100%|##########| [00:04<00:00]
-[2026-07-09 13:40:10] COMMAND: C:\Users\I73904\AppData\Roaming\Python\Python311\Scripts\pymdfu.exe -v debug update --tool serial --port COM29 --baudrate 38400 --image C:\Users\I73904\Downloads\avr128da48-cnano-8bit-mdfu-client-mplab-mcc-master\avr128da48-cnano-8bit-mdfu-client-mplab-mcc-master\uart\crc32\avr128da48-application-crc32.X\new_application.img
+[2026-07-09 13:40:10] COMMAND: C:\Users\<username>\AppData\Roaming\Python\Python311\Scripts\pymdfu.exe -v debug update --tool serial --port COM29 --baudrate 38400 --image ~/avr128da48-cnano-8bit-mdfu-client-mplab-mcc-master/uart/crc32/avr128da48-application-crc32.X/new_application.img
 [2026-07-09 13:40:17] pymdfu - DEBUG - Common arguments: Namespace(verbose='debug', help=False, version=False, release_info=False)
-pymdfu - DEBUG - Action arguments: Namespace(action='update', tool='serial', image='C:\\Users\\I73904\\Downloads\\avr128da48-cnano-8bit-mdfu-client-mplab-mcc-master\\avr128da48-cnano-8bit-mdfu-client-mplab-mcc-master\\uart\\crc32\\avr128da48-application-crc32.X\\new_application.img', retries=5, func=<function update at 0x000001DDD64C1080>)
+pymdfu - DEBUG - Action arguments: Namespace(action='update', tool='serial', image='~/avr128da48-cnano-8bit-mdfu-client-mplab-mcc-master/uart/crc32/avr128da48-application-crc32.X/new_application.img', retries=5, func=<function update at 0x000001DDD64C1080>)
 pymdfu - DEBUG - Tool arguments: ['--port', 'COM29', '--baudrate', '38400']
 pymdfu.MdfuHost - DEBUG - Sending MDFU command packet:
 Command:         GET_CLIENT_INFO (0x1)
@@ -1224,9 +1224,9 @@ Update Progress: 100%|##########| [00:03<00:00]
 
 Update Progress: 100%|##########| [00:03<00:00]
 Update Progress: 100%|##########| [00:03<00:00]
-[2026-07-09 13:40:47] COMMAND: C:\Users\I73904\AppData\Roaming\Python\Python311\Scripts\pymdfu.exe -v debug update --tool serial --port COM29 --baudrate 57600 --image C:\Users\I73904\Downloads\avr128da48-cnano-8bit-mdfu-client-mplab-mcc-master\avr128da48-cnano-8bit-mdfu-client-mplab-mcc-master\uart\crc32\avr128da48-application-crc32.X\new_application.img
+[2026-07-09 13:40:47] COMMAND: C:\Users\<username>\AppData\Roaming\Python\Python311\Scripts\pymdfu.exe -v debug update --tool serial --port COM29 --baudrate 57600 --image ~/avr128da48-cnano-8bit-mdfu-client-mplab-mcc-master/uart/crc32/avr128da48-application-crc32.X/new_application.img
 [2026-07-09 13:40:54] pymdfu - DEBUG - Common arguments: Namespace(verbose='debug', help=False, version=False, release_info=False)
-pymdfu - DEBUG - Action arguments: Namespace(action='update', tool='serial', image='C:\\Users\\I73904\\Downloads\\avr128da48-cnano-8bit-mdfu-client-mplab-mcc-master\\avr128da48-cnano-8bit-mdfu-client-mplab-mcc-master\\uart\\crc32\\avr128da48-application-crc32.X\\new_application.img', retries=5, func=<function update at 0x0000016B0B481080>)
+pymdfu - DEBUG - Action arguments: Namespace(action='update', tool='serial', image='~/avr128da48-cnano-8bit-mdfu-client-mplab-mcc-master/uart/crc32/avr128da48-application-crc32.X/new_application.img', retries=5, func=<function update at 0x0000016B0B481080>)
 pymdfu - DEBUG - Tool arguments: ['--port', 'COM29', '--baudrate', '57600']
 pymdfu.MdfuHost - DEBUG - Sending MDFU command packet:
 Command:         GET_CLIENT_INFO (0x1)
@@ -1469,9 +1469,9 @@ Update Progress: 100%|##########| [00:03<00:00]
 
 Update Progress: 100%|##########| [00:03<00:00]
 Update Progress: 100%|##########| [00:03<00:00]
-[2026-07-09 13:41:29] COMMAND: C:\Users\I73904\AppData\Roaming\Python\Python311\Scripts\pymdfu.exe -v debug update --tool serial --port COM29 --baudrate 115200 --image C:\Users\I73904\Downloads\avr128da48-cnano-8bit-mdfu-client-mplab-mcc-master\avr128da48-cnano-8bit-mdfu-client-mplab-mcc-master\uart\crc32\avr128da48-application-crc32.X\new_application.img
+[2026-07-09 13:41:29] COMMAND: C:\Users\<username>\AppData\Roaming\Python\Python311\Scripts\pymdfu.exe -v debug update --tool serial --port COM29 --baudrate 115200 --image ~/avr128da48-cnano-8bit-mdfu-client-mplab-mcc-master/uart/crc32/avr128da48-application-crc32.X/new_application.img
 [2026-07-09 13:41:36] pymdfu - DEBUG - Common arguments: Namespace(verbose='debug', help=False, version=False, release_info=False)
-pymdfu - DEBUG - Action arguments: Namespace(action='update', tool='serial', image='C:\\Users\\I73904\\Downloads\\avr128da48-cnano-8bit-mdfu-client-mplab-mcc-master\\avr128da48-cnano-8bit-mdfu-client-mplab-mcc-master\\uart\\crc32\\avr128da48-application-crc32.X\\new_application.img', retries=5, func=<function update at 0x000002747F181080>)
+pymdfu - DEBUG - Action arguments: Namespace(action='update', tool='serial', image='~/avr128da48-cnano-8bit-mdfu-client-mplab-mcc-master/uart/crc32/avr128da48-application-crc32.X/new_application.img', retries=5, func=<function update at 0x000002747F181080>)
 pymdfu - DEBUG - Tool arguments: ['--port', 'COM29', '--baudrate', '115200']
 pymdfu.MdfuHost - DEBUG - Sending MDFU command packet:
 Command:         GET_CLIENT_INFO (0x1)
@@ -1712,9 +1712,9 @@ Update Progress: 100%|##########| [00:03<00:00]
 
 Update Progress: 100%|##########| [00:03<00:00]
 Update Progress: 100%|##########| [00:03<00:00]
-[2026-07-09 13:41:58] COMMAND: C:\Users\I73904\AppData\Roaming\Python\Python311\Scripts\pymdfu.exe -v debug update --tool serial --port COM29 --baudrate 230400 --image C:\Users\I73904\Downloads\avr128da48-cnano-8bit-mdfu-client-mplab-mcc-master\avr128da48-cnano-8bit-mdfu-client-mplab-mcc-master\uart\crc32\avr128da48-application-crc32.X\new_application.img
+[2026-07-09 13:41:58] COMMAND: C:\Users\<username>\AppData\Roaming\Python\Python311\Scripts\pymdfu.exe -v debug update --tool serial --port COM29 --baudrate 230400 --image ~/avr128da48-cnano-8bit-mdfu-client-mplab-mcc-master/uart/crc32/avr128da48-application-crc32.X/new_application.img
 [2026-07-09 13:42:05] pymdfu - DEBUG - Common arguments: Namespace(verbose='debug', help=False, version=False, release_info=False)
-pymdfu - DEBUG - Action arguments: Namespace(action='update', tool='serial', image='C:\\Users\\I73904\\Downloads\\avr128da48-cnano-8bit-mdfu-client-mplab-mcc-master\\avr128da48-cnano-8bit-mdfu-client-mplab-mcc-master\\uart\\crc32\\avr128da48-application-crc32.X\\new_application.img', retries=5, func=<function update at 0x00000210584B1080>)
+pymdfu - DEBUG - Action arguments: Namespace(action='update', tool='serial', image='~/avr128da48-cnano-8bit-mdfu-client-mplab-mcc-master/uart/crc32/avr128da48-application-crc32.X/new_application.img', retries=5, func=<function update at 0x00000210584B1080>)
 pymdfu - DEBUG - Tool arguments: ['--port', 'COM29', '--baudrate', '230400']
 pymdfu.MdfuHost - DEBUG - Sending MDFU command packet:
 Command:         GET_CLIENT_INFO (0x1)
@@ -1955,9 +1955,9 @@ Update Progress: 100%|##########| [00:03<00:00]
 
 Update Progress: 100%|##########| [00:03<00:00]
 Update Progress: 100%|##########| [00:03<00:00]
-[2026-07-09 13:42:38] COMMAND: C:\Users\I73904\AppData\Roaming\Python\Python311\Scripts\pymdfu.exe -v debug update --tool serial --port COM29 --baudrate 460800 --image C:\Users\I73904\Downloads\avr128da48-cnano-8bit-mdfu-client-mplab-mcc-master\avr128da48-cnano-8bit-mdfu-client-mplab-mcc-master\uart\crc32\avr128da48-application-crc32.X\new_application.img
+[2026-07-09 13:42:38] COMMAND: C:\Users\<username>\AppData\Roaming\Python\Python311\Scripts\pymdfu.exe -v debug update --tool serial --port COM29 --baudrate 460800 --image ~/avr128da48-cnano-8bit-mdfu-client-mplab-mcc-master/uart/crc32/avr128da48-application-crc32.X/new_application.img
 [2026-07-09 13:42:44] pymdfu - DEBUG - Common arguments: Namespace(verbose='debug', help=False, version=False, release_info=False)
-pymdfu - DEBUG - Action arguments: Namespace(action='update', tool='serial', image='C:\\Users\\I73904\\Downloads\\avr128da48-cnano-8bit-mdfu-client-mplab-mcc-master\\avr128da48-cnano-8bit-mdfu-client-mplab-mcc-master\\uart\\crc32\\avr128da48-application-crc32.X\\new_application.img', retries=5, func=<function update at 0x00000221AED31080>)
+pymdfu - DEBUG - Action arguments: Namespace(action='update', tool='serial', image='~/avr128da48-cnano-8bit-mdfu-client-mplab-mcc-master/uart/crc32/avr128da48-application-crc32.X/new_application.img', retries=5, func=<function update at 0x00000221AED31080>)
 pymdfu - DEBUG - Tool arguments: ['--port', 'COM29', '--baudrate', '460800']
 pymdfu.MdfuHost - DEBUG - Sending MDFU command packet:
 Command:         GET_CLIENT_INFO (0x1)
@@ -2197,9 +2197,9 @@ Update Progress: 100%|##########| [00:03<00:00]
 
 Update Progress: 100%|##########| [00:03<00:00]
 Update Progress: 100%|##########| [00:03<00:00]
-[2026-07-09 13:43:26] COMMAND: C:\Users\I73904\AppData\Roaming\Python\Python311\Scripts\pymdfu.exe -v debug update --tool serial --port COM29 --baudrate 921600 --image C:\Users\I73904\Downloads\avr128da48-cnano-8bit-mdfu-client-mplab-mcc-master\avr128da48-cnano-8bit-mdfu-client-mplab-mcc-master\uart\crc32\avr128da48-application-crc32.X\new_application.img
+[2026-07-09 13:43:26] COMMAND: C:\Users\<username>\AppData\Roaming\Python\Python311\Scripts\pymdfu.exe -v debug update --tool serial --port COM29 --baudrate 921600 --image ~/avr128da48-cnano-8bit-mdfu-client-mplab-mcc-master/uart/crc32/avr128da48-application-crc32.X/new_application.img
 [2026-07-09 13:44:29] pymdfu - DEBUG - Common arguments: Namespace(verbose='debug', help=False, version=False, release_info=False)
-pymdfu - DEBUG - Action arguments: Namespace(action='update', tool='serial', image='C:\\Users\\I73904\\Downloads\\avr128da48-cnano-8bit-mdfu-client-mplab-mcc-master\\avr128da48-cnano-8bit-mdfu-client-mplab-mcc-master\\uart\\crc32\\avr128da48-application-crc32.X\\new_application.img', retries=5, func=<function update at 0x000001F3D3B51080>)
+pymdfu - DEBUG - Action arguments: Namespace(action='update', tool='serial', image='~/avr128da48-cnano-8bit-mdfu-client-mplab-mcc-master/uart/crc32/avr128da48-application-crc32.X/new_application.img', retries=5, func=<function update at 0x000001F3D3B51080>)
 pymdfu - DEBUG - Tool arguments: ['--port', 'COM29', '--baudrate', '921600']
 pymdfu.MdfuHost - DEBUG - Sending MDFU command packet:
 Command:         GET_CLIENT_INFO (0x1)
@@ -2351,9 +2351,9 @@ Update Progress:   0%|          | [01:00<?]
                                            
 
 Update Progress:   0%|          | [01:00<?]
-[2026-07-09 13:44:43] COMMAND: C:\Users\I73904\AppData\Roaming\Python\Python311\Scripts\pymdfu.exe -v debug update --tool mcp2222 --interface spi --image C:\Users\I73904\Downloads\avr128da48-cnano-8bit-mdfu-client-mplab-mcc-master\avr128da48-cnano-8bit-mdfu-client-mplab-mcc-master\spi\avr128da48-application-crc32.X\new_application.img --clk-speed 187500 --mode 0 --cs-pin 0 --cs-polarity low --delay 0
+[2026-07-09 13:44:43] COMMAND: C:\Users\<username>\AppData\Roaming\Python\Python311\Scripts\pymdfu.exe -v debug update --tool mcp2222 --interface spi --image ~/avr128da48-cnano-8bit-mdfu-client-mplab-mcc-master/spi/avr128da48-application-crc32.X/new_application.img --clk-speed 187500 --mode 0 --cs-pin 0 --cs-polarity low --delay 0
 [2026-07-09 13:44:50] pymdfu - DEBUG - Common arguments: Namespace(verbose='debug', help=False, version=False, release_info=False)
-pymdfu - DEBUG - Action arguments: Namespace(action='update', tool='mcp2222', image='C:\\Users\\I73904\\Downloads\\avr128da48-cnano-8bit-mdfu-client-mplab-mcc-master\\avr128da48-cnano-8bit-mdfu-client-mplab-mcc-master\\spi\\avr128da48-application-crc32.X\\new_application.img', retries=5, func=<function update at 0x0000022E43CF1120>)
+pymdfu - DEBUG - Action arguments: Namespace(action='update', tool='mcp2222', image='~/avr128da48-cnano-8bit-mdfu-client-mplab-mcc-master/spi/avr128da48-application-crc32.X/new_application.img', retries=5, func=<function update at 0x0000022E43CF1120>)
 pymdfu - DEBUG - Tool arguments: ['--interface', 'spi', '--clk-speed', '187500', '--mode', '0', '--cs-pin', '0', '--cs-polarity', 'low', '--delay', '0']
 mac.mcp2222_mac - DEBUG - Found 1 MCP2222 devices
 mac.mcp2222_mac - DEBUG - Device VID=04d8, PID=0b15, Manufacturer=Microchip Technology Inc., Product Name=MCP2222 USB Bridge, Serial Number=424260610210770501050152
@@ -10122,9 +10122,9 @@ Update Progress: 100%|##########| [00:03<00:00]
 
 Update Progress: 100%|##########| [00:03<00:00]
 Update Progress: 100%|##########| [00:03<00:00]
-[2026-07-09 13:45:14] COMMAND: C:\Users\I73904\AppData\Roaming\Python\Python311\Scripts\pymdfu.exe -v debug update --tool mcp2222 --interface spi --image C:\Users\I73904\Downloads\avr128da48-cnano-8bit-mdfu-client-mplab-mcc-master\avr128da48-cnano-8bit-mdfu-client-mplab-mcc-master\spi\avr128da48-application-crc32.X\new_application.img --clk-speed 375000 --mode 0 --cs-pin 0 --cs-polarity low --delay 0
+[2026-07-09 13:45:14] COMMAND: C:\Users\<username>\AppData\Roaming\Python\Python311\Scripts\pymdfu.exe -v debug update --tool mcp2222 --interface spi --image ~/avr128da48-cnano-8bit-mdfu-client-mplab-mcc-master/spi/avr128da48-application-crc32.X/new_application.img --clk-speed 375000 --mode 0 --cs-pin 0 --cs-polarity low --delay 0
 [2026-07-09 13:45:21] pymdfu - DEBUG - Common arguments: Namespace(verbose='debug', help=False, version=False, release_info=False)
-pymdfu - DEBUG - Action arguments: Namespace(action='update', tool='mcp2222', image='C:\\Users\\I73904\\Downloads\\avr128da48-cnano-8bit-mdfu-client-mplab-mcc-master\\avr128da48-cnano-8bit-mdfu-client-mplab-mcc-master\\spi\\avr128da48-application-crc32.X\\new_application.img', retries=5, func=<function update at 0x000001A3A4BD1120>)
+pymdfu - DEBUG - Action arguments: Namespace(action='update', tool='mcp2222', image='~/avr128da48-cnano-8bit-mdfu-client-mplab-mcc-master/spi/avr128da48-application-crc32.X/new_application.img', retries=5, func=<function update at 0x000001A3A4BD1120>)
 pymdfu - DEBUG - Tool arguments: ['--interface', 'spi', '--clk-speed', '375000', '--mode', '0', '--cs-pin', '0', '--cs-polarity', 'low', '--delay', '0']
 mac.mcp2222_mac - DEBUG - Found 1 MCP2222 devices
 mac.mcp2222_mac - DEBUG - Device VID=04d8, PID=0b15, Manufacturer=Microchip Technology Inc., Product Name=MCP2222 USB Bridge, Serial Number=424260610210770501050152
@@ -19548,9 +19548,9 @@ Update Progress: 100%|##########| [00:03<00:00]
 
 Update Progress: 100%|##########| [00:03<00:00]
 Update Progress: 100%|##########| [00:03<00:00]
-[2026-07-09 13:45:30] COMMAND: C:\Users\I73904\AppData\Roaming\Python\Python311\Scripts\pymdfu.exe -v debug update --tool mcp2222 --interface spi --image C:\Users\I73904\Downloads\avr128da48-cnano-8bit-mdfu-client-mplab-mcc-master\avr128da48-cnano-8bit-mdfu-client-mplab-mcc-master\spi\avr128da48-application-crc32.X\new_application.img --clk-speed 750000 --mode 0 --cs-pin 0 --cs-polarity low --delay 0
+[2026-07-09 13:45:30] COMMAND: C:\Users\<username>\AppData\Roaming\Python\Python311\Scripts\pymdfu.exe -v debug update --tool mcp2222 --interface spi --image ~/avr128da48-cnano-8bit-mdfu-client-mplab-mcc-master/spi/avr128da48-application-crc32.X/new_application.img --clk-speed 750000 --mode 0 --cs-pin 0 --cs-polarity low --delay 0
 [2026-07-09 13:45:37] pymdfu - DEBUG - Common arguments: Namespace(verbose='debug', help=False, version=False, release_info=False)
-pymdfu - DEBUG - Action arguments: Namespace(action='update', tool='mcp2222', image='C:\\Users\\I73904\\Downloads\\avr128da48-cnano-8bit-mdfu-client-mplab-mcc-master\\avr128da48-cnano-8bit-mdfu-client-mplab-mcc-master\\spi\\avr128da48-application-crc32.X\\new_application.img', retries=5, func=<function update at 0x000001986B341120>)
+pymdfu - DEBUG - Action arguments: Namespace(action='update', tool='mcp2222', image='~/avr128da48-cnano-8bit-mdfu-client-mplab-mcc-master/spi/avr128da48-application-crc32.X/new_application.img', retries=5, func=<function update at 0x000001986B341120>)
 pymdfu - DEBUG - Tool arguments: ['--interface', 'spi', '--clk-speed', '750000', '--mode', '0', '--cs-pin', '0', '--cs-polarity', 'low', '--delay', '0']
 mac.mcp2222_mac - DEBUG - Found 1 MCP2222 devices
 mac.mcp2222_mac - DEBUG - Device VID=04d8, PID=0b15, Manufacturer=Microchip Technology Inc., Product Name=MCP2222 USB Bridge, Serial Number=424260610210770501050152
@@ -29510,9 +29510,9 @@ Update Progress: 100%|##########| [00:03<00:00]
 
 Update Progress: 100%|##########| [00:03<00:00]
 Update Progress: 100%|##########| [00:03<00:00]
-[2026-07-09 13:45:48] COMMAND: C:\Users\I73904\AppData\Roaming\Python\Python311\Scripts\pymdfu.exe -v debug update --tool mcp2222 --interface spi --image C:\Users\I73904\Downloads\avr128da48-cnano-8bit-mdfu-client-mplab-mcc-master\avr128da48-cnano-8bit-mdfu-client-mplab-mcc-master\spi\avr128da48-application-crc32.X\new_application.img --clk-speed 1500000 --mode 0 --cs-pin 0 --cs-polarity low --delay 0
+[2026-07-09 13:45:48] COMMAND: C:\Users\<username>\AppData\Roaming\Python\Python311\Scripts\pymdfu.exe -v debug update --tool mcp2222 --interface spi --image ~/avr128da48-cnano-8bit-mdfu-client-mplab-mcc-master/spi/avr128da48-application-crc32.X/new_application.img --clk-speed 1500000 --mode 0 --cs-pin 0 --cs-polarity low --delay 0
 [2026-07-09 13:45:54] pymdfu - DEBUG - Common arguments: Namespace(verbose='debug', help=False, version=False, release_info=False)
-pymdfu - DEBUG - Action arguments: Namespace(action='update', tool='mcp2222', image='C:\\Users\\I73904\\Downloads\\avr128da48-cnano-8bit-mdfu-client-mplab-mcc-master\\avr128da48-cnano-8bit-mdfu-client-mplab-mcc-master\\spi\\avr128da48-application-crc32.X\\new_application.img', retries=5, func=<function update at 0x000001DFF7091120>)
+pymdfu - DEBUG - Action arguments: Namespace(action='update', tool='mcp2222', image='~/avr128da48-cnano-8bit-mdfu-client-mplab-mcc-master/spi/avr128da48-application-crc32.X/new_application.img', retries=5, func=<function update at 0x000001DFF7091120>)
 pymdfu - DEBUG - Tool arguments: ['--interface', 'spi', '--clk-speed', '1500000', '--mode', '0', '--cs-pin', '0', '--cs-polarity', 'low', '--delay', '0']
 mac.mcp2222_mac - DEBUG - Found 1 MCP2222 devices
 mac.mcp2222_mac - DEBUG - Device VID=04d8, PID=0b15, Manufacturer=Microchip Technology Inc., Product Name=MCP2222 USB Bridge, Serial Number=424260610210770501050152
@@ -39000,9 +39000,9 @@ Update Progress: 100%|##########| [00:03<00:00]
 
 Update Progress: 100%|##########| [00:03<00:00]
 Update Progress: 100%|##########| [00:03<00:00]
-[2026-07-09 13:46:07] COMMAND: C:\Users\I73904\AppData\Roaming\Python\Python311\Scripts\pymdfu.exe -v debug update --tool mcp2222 --interface spi --image C:\Users\I73904\Downloads\avr128da48-cnano-8bit-mdfu-client-mplab-mcc-master\avr128da48-cnano-8bit-mdfu-client-mplab-mcc-master\spi\avr128da48-application-crc32.X\new_application.img --clk-speed 3000000 --mode 0 --cs-pin 0 --cs-polarity low --delay 0
+[2026-07-09 13:46:07] COMMAND: C:\Users\<username>\AppData\Roaming\Python\Python311\Scripts\pymdfu.exe -v debug update --tool mcp2222 --interface spi --image ~/avr128da48-cnano-8bit-mdfu-client-mplab-mcc-master/spi/avr128da48-application-crc32.X/new_application.img --clk-speed 3000000 --mode 0 --cs-pin 0 --cs-polarity low --delay 0
 [2026-07-09 13:46:13] pymdfu - DEBUG - Common arguments: Namespace(verbose='debug', help=False, version=False, release_info=False)
-pymdfu - DEBUG - Action arguments: Namespace(action='update', tool='mcp2222', image='C:\\Users\\I73904\\Downloads\\avr128da48-cnano-8bit-mdfu-client-mplab-mcc-master\\avr128da48-cnano-8bit-mdfu-client-mplab-mcc-master\\spi\\avr128da48-application-crc32.X\\new_application.img', retries=5, func=<function update at 0x0000024C197B1120>)
+pymdfu - DEBUG - Action arguments: Namespace(action='update', tool='mcp2222', image='~/avr128da48-cnano-8bit-mdfu-client-mplab-mcc-master/spi/avr128da48-application-crc32.X/new_application.img', retries=5, func=<function update at 0x0000024C197B1120>)
 pymdfu - DEBUG - Tool arguments: ['--interface', 'spi', '--clk-speed', '3000000', '--mode', '0', '--cs-pin', '0', '--cs-polarity', 'low', '--delay', '0']
 mac.mcp2222_mac - DEBUG - Found 1 MCP2222 devices
 mac.mcp2222_mac - DEBUG - Device VID=04d8, PID=0b15, Manufacturer=Microchip Technology Inc., Product Name=MCP2222 USB Bridge, Serial Number=424260610210770501050152
@@ -49226,9 +49226,9 @@ Update Progress: 100%|##########| [00:03<00:00]
 
 Update Progress: 100%|##########| [00:03<00:00]
 Update Progress: 100%|##########| [00:03<00:00]
-[2026-07-09 13:46:24] COMMAND: C:\Users\I73904\AppData\Roaming\Python\Python311\Scripts\pymdfu.exe -v debug update --tool mcp2222 --interface spi --image C:\Users\I73904\Downloads\avr128da48-cnano-8bit-mdfu-client-mplab-mcc-master\avr128da48-cnano-8bit-mdfu-client-mplab-mcc-master\spi\avr128da48-application-crc32.X\new_application.img --clk-speed 6000000 --mode 0 --cs-pin 0 --cs-polarity low --delay 0
+[2026-07-09 13:46:24] COMMAND: C:\Users\<username>\AppData\Roaming\Python\Python311\Scripts\pymdfu.exe -v debug update --tool mcp2222 --interface spi --image ~/avr128da48-cnano-8bit-mdfu-client-mplab-mcc-master/spi/avr128da48-application-crc32.X/new_application.img --clk-speed 6000000 --mode 0 --cs-pin 0 --cs-polarity low --delay 0
 [2026-07-09 13:46:33] pymdfu - DEBUG - Common arguments: Namespace(verbose='debug', help=False, version=False, release_info=False)
-pymdfu - DEBUG - Action arguments: Namespace(action='update', tool='mcp2222', image='C:\\Users\\I73904\\Downloads\\avr128da48-cnano-8bit-mdfu-client-mplab-mcc-master\\avr128da48-cnano-8bit-mdfu-client-mplab-mcc-master\\spi\\avr128da48-application-crc32.X\\new_application.img', retries=5, func=<function update at 0x000001CEA5E71120>)
+pymdfu - DEBUG - Action arguments: Namespace(action='update', tool='mcp2222', image='~/avr128da48-cnano-8bit-mdfu-client-mplab-mcc-master/spi/avr128da48-application-crc32.X/new_application.img', retries=5, func=<function update at 0x000001CEA5E71120>)
 pymdfu - DEBUG - Tool arguments: ['--interface', 'spi', '--clk-speed', '6000000', '--mode', '0', '--cs-pin', '0', '--cs-polarity', 'low', '--delay', '0']
 mac.mcp2222_mac - DEBUG - Found 1 MCP2222 devices
 mac.mcp2222_mac - DEBUG - Device VID=04d8, PID=0b15, Manufacturer=Microchip Technology Inc., Product Name=MCP2222 USB Bridge, Serial Number=424260610210770501050152
@@ -53479,9 +53479,9 @@ Update Progress:   0%|          | [00:06<?]
                                            
 
 Update Progress:   0%|          | [00:06<?]
-[2026-07-09 13:46:43] COMMAND: C:\Users\I73904\AppData\Roaming\Python\Python311\Scripts\pymdfu.exe -v debug update --tool mcp2222 --interface spi --image C:\Users\I73904\Downloads\avr128da48-cnano-8bit-mdfu-client-mplab-mcc-master\avr128da48-cnano-8bit-mdfu-client-mplab-mcc-master\spi\avr128da48-application-crc32.X\new_application.img --clk-speed 12000000 --mode 0 --cs-pin 0 --cs-polarity low --delay 0
+[2026-07-09 13:46:43] COMMAND: C:\Users\<username>\AppData\Roaming\Python\Python311\Scripts\pymdfu.exe -v debug update --tool mcp2222 --interface spi --image ~/avr128da48-cnano-8bit-mdfu-client-mplab-mcc-master/spi/avr128da48-application-crc32.X/new_application.img --clk-speed 12000000 --mode 0 --cs-pin 0 --cs-polarity low --delay 0
 [2026-07-09 13:46:52] pymdfu - DEBUG - Common arguments: Namespace(verbose='debug', help=False, version=False, release_info=False)
-pymdfu - DEBUG - Action arguments: Namespace(action='update', tool='mcp2222', image='C:\\Users\\I73904\\Downloads\\avr128da48-cnano-8bit-mdfu-client-mplab-mcc-master\\avr128da48-cnano-8bit-mdfu-client-mplab-mcc-master\\spi\\avr128da48-application-crc32.X\\new_application.img', retries=5, func=<function update at 0x0000013DC72A1120>)
+pymdfu - DEBUG - Action arguments: Namespace(action='update', tool='mcp2222', image='~/avr128da48-cnano-8bit-mdfu-client-mplab-mcc-master/spi/avr128da48-application-crc32.X/new_application.img', retries=5, func=<function update at 0x0000013DC72A1120>)
 pymdfu - DEBUG - Tool arguments: ['--interface', 'spi', '--clk-speed', '12000000', '--mode', '0', '--cs-pin', '0', '--cs-polarity', 'low', '--delay', '0']
 mac.mcp2222_mac - DEBUG - Found 1 MCP2222 devices
 mac.mcp2222_mac - DEBUG - Device VID=04d8, PID=0b15, Manufacturer=Microchip Technology Inc., Product Name=MCP2222 USB Bridge, Serial Number=424260610210770501050152
@@ -57604,9 +57604,9 @@ Update Progress:   0%|          | [00:06<?]
                                            
 
 Update Progress:   0%|          | [00:06<?]
-[2026-07-09 13:47:05] COMMAND: C:\Users\I73904\AppData\Roaming\Python\Python311\Scripts\pymdfu.exe -v debug update --tool mcp2222 --interface i2c --clk-speed 100000 --address 32 --image C:\Users\I73904\Downloads\avr128da48-cnano-8bit-mdfu-client-mplab-mcc-master\avr128da48-cnano-8bit-mdfu-client-mplab-mcc-master\i2c\avr128da48-application-crc32.X\new_application.img
+[2026-07-09 13:47:05] COMMAND: C:\Users\<username>\AppData\Roaming\Python\Python311\Scripts\pymdfu.exe -v debug update --tool mcp2222 --interface i2c --clk-speed 100000 --address 32 --image ~/avr128da48-cnano-8bit-mdfu-client-mplab-mcc-master/i2c/avr128da48-application-crc32.X/new_application.img
 [2026-07-09 13:47:15] pymdfu - DEBUG - Common arguments: Namespace(verbose='debug', help=False, version=False, release_info=False)
-pymdfu - DEBUG - Action arguments: Namespace(action='update', tool='mcp2222', image='C:\\Users\\I73904\\Downloads\\avr128da48-cnano-8bit-mdfu-client-mplab-mcc-master\\avr128da48-cnano-8bit-mdfu-client-mplab-mcc-master\\i2c\\avr128da48-application-crc32.X\\new_application.img', retries=5, func=<function update at 0x00000257B40F1080>)
+pymdfu - DEBUG - Action arguments: Namespace(action='update', tool='mcp2222', image='~/avr128da48-cnano-8bit-mdfu-client-mplab-mcc-master/i2c/avr128da48-application-crc32.X/new_application.img', retries=5, func=<function update at 0x00000257B40F1080>)
 pymdfu - DEBUG - Tool arguments: ['--interface', 'i2c', '--clk-speed', '100000', '--address', '32']
 mac.mcp2222_mac - DEBUG - Found 1 MCP2222 devices
 mac.mcp2222_mac - DEBUG - Device VID=04d8, PID=0b15, Manufacturer=Microchip Technology Inc., Product Name=MCP2222 USB Bridge, Serial Number=424260610210770501050152
@@ -57921,9 +57921,9 @@ Update Progress: 100%|##########| [00:07<00:00]
 
 Update Progress: 100%|##########| [00:07<00:00]
 Update Progress: 100%|##########| [00:07<00:00]
-[2026-07-09 13:47:28] COMMAND: C:\Users\I73904\AppData\Roaming\Python\Python311\Scripts\pymdfu.exe -v debug update --tool mcp2222 --interface i2c --clk-speed 400000 --address 32 --image C:\Users\I73904\Downloads\avr128da48-cnano-8bit-mdfu-client-mplab-mcc-master\avr128da48-cnano-8bit-mdfu-client-mplab-mcc-master\i2c\avr128da48-application-crc32.X\new_application.img
+[2026-07-09 13:47:28] COMMAND: C:\Users\<username>\AppData\Roaming\Python\Python311\Scripts\pymdfu.exe -v debug update --tool mcp2222 --interface i2c --clk-speed 400000 --address 32 --image ~/avr128da48-cnano-8bit-mdfu-client-mplab-mcc-master/i2c/avr128da48-application-crc32.X/new_application.img
 [2026-07-09 13:47:38] pymdfu - DEBUG - Common arguments: Namespace(verbose='debug', help=False, version=False, release_info=False)
-pymdfu - DEBUG - Action arguments: Namespace(action='update', tool='mcp2222', image='C:\\Users\\I73904\\Downloads\\avr128da48-cnano-8bit-mdfu-client-mplab-mcc-master\\avr128da48-cnano-8bit-mdfu-client-mplab-mcc-master\\i2c\\avr128da48-application-crc32.X\\new_application.img', retries=5, func=<function update at 0x000001F2A0C01080>)
+pymdfu - DEBUG - Action arguments: Namespace(action='update', tool='mcp2222', image='~/avr128da48-cnano-8bit-mdfu-client-mplab-mcc-master/i2c/avr128da48-application-crc32.X/new_application.img', retries=5, func=<function update at 0x000001F2A0C01080>)
 pymdfu - DEBUG - Tool arguments: ['--interface', 'i2c', '--clk-speed', '400000', '--address', '32']
 mac.mcp2222_mac - DEBUG - Found 1 MCP2222 devices
 mac.mcp2222_mac - DEBUG - Device VID=04d8, PID=0b15, Manufacturer=Microchip Technology Inc., Product Name=MCP2222 USB Bridge, Serial Number=424260610210770501050152
@@ -58236,9 +58236,9 @@ Update Progress: 100%|##########| [00:07<00:00]
 
 Update Progress: 100%|##########| [00:07<00:00]
 Update Progress: 100%|##########| [00:07<00:00]
-[2026-07-09 13:47:53] COMMAND: C:\Users\I73904\AppData\Roaming\Python\Python311\Scripts\pymdfu.exe -v debug update --tool mcp2222 --interface i2c --clk-speed 1000000 --address 32 --image C:\Users\I73904\Downloads\avr128da48-cnano-8bit-mdfu-client-mplab-mcc-master\avr128da48-cnano-8bit-mdfu-client-mplab-mcc-master\i2c\avr128da48-application-crc32.X\new_application.img
+[2026-07-09 13:47:53] COMMAND: C:\Users\<username>\AppData\Roaming\Python\Python311\Scripts\pymdfu.exe -v debug update --tool mcp2222 --interface i2c --clk-speed 1000000 --address 32 --image ~/avr128da48-cnano-8bit-mdfu-client-mplab-mcc-master/i2c/avr128da48-application-crc32.X/new_application.img
 [2026-07-09 13:48:02] pymdfu - DEBUG - Common arguments: Namespace(verbose='debug', help=False, version=False, release_info=False)
-pymdfu - DEBUG - Action arguments: Namespace(action='update', tool='mcp2222', image='C:\\Users\\I73904\\Downloads\\avr128da48-cnano-8bit-mdfu-client-mplab-mcc-master\\avr128da48-cnano-8bit-mdfu-client-mplab-mcc-master\\i2c\\avr128da48-application-crc32.X\\new_application.img', retries=5, func=<function update at 0x000001A4F8961080>)
+pymdfu - DEBUG - Action arguments: Namespace(action='update', tool='mcp2222', image='~/avr128da48-cnano-8bit-mdfu-client-mplab-mcc-master/i2c/avr128da48-application-crc32.X/new_application.img', retries=5, func=<function update at 0x000001A4F8961080>)
 pymdfu - DEBUG - Tool arguments: ['--interface', 'i2c', '--clk-speed', '1000000', '--address', '32']
 mac.mcp2222_mac - DEBUG - Found 1 MCP2222 devices
 mac.mcp2222_mac - DEBUG - Device VID=04d8, PID=0b15, Manufacturer=Microchip Technology Inc., Product Name=MCP2222 USB Bridge, Serial Number=424260610210770501050152
