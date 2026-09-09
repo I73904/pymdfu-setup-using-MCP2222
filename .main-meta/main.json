@@ -1,0 +1,73 @@
+{
+    "metaDataVersion": "1.0.0",
+    "category": "com.microchip.ide.project",
+    "content": {
+        "metaDataVersion": "1.3.0",
+        "name": "com.microchip.mcu8.mplabx.project.avr128da48-cnano-8bit-mdfu-client-mplab-mcc",
+        "version": "1.3.0",
+        "displayName": "Getting Started with the 8-Bit MDFU Client for AVR128DA48",
+        "projectName": "avr128da48-cnano-8bit-mdfu-client-mplab-mcc",
+        "shortDescription": "GitHub Example for the 8-bit MDFU Client Library using AVR128DA48 with a CNANO board.",
+        "ide": {
+            "name": "MPLAB X",
+            "semverRange": ">=6.20.0"
+        },
+        "compiler": [
+            {
+                "name": "XC8",
+                "semverRange": "^2.50.0"
+            }
+        ],
+        "dfp": {
+            "name": "AVR-Dx_DFP",
+            "semverRange": "^2.6.303"
+        },
+        "configurator": {
+            "name": "MCC",
+            "semverRange": "^5.5.1"
+        },
+        "device": {
+            "metaDataVersion": "1.0.0",
+            "category": "com.microchip.portal.contentRef",
+            "content": {
+                "metaDataVersion": "1.0.0",
+                "category": "com.microchip.device",
+                "name": "AVR128DA48",
+                "versionRange": "*"
+            }
+        },
+        "author": "Microchip",
+        "peripherals": [
+            "UART",
+            "SPI",
+            "Memory Module"
+        ],
+        "keywords": [
+            "Melody",
+            "MCC Melody",
+            "Curiosity",
+			"Curiosity Nano",
+            "Bootloader",
+            "Memory",
+            "Serial Communication",
+            "EUSART",
+            "SPI",
+            "Virtual COM Port",
+            "Microchip Device Firmware Update",
+            "8-bit MDFU Client",
+            "MDFU",
+            "File Transfer Protocol"
+        ],
+        "additionalData": {
+            "longDescription": {
+                "metaDataVersion": "1.0.0",
+                "category": "com.microchip.portal.fileRef",
+                "content": {
+                    "metaDataVersion": "1.0.0",
+                    "fileName": "./README.md",
+                    "mimeType": "text/markdown"
+                }
+            }
+        }
+    }
+}
