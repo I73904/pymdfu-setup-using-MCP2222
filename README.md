@@ -1,403 +1,948 @@
 <!-- Please do not change this logo with link -->
-
 [![MCHP](images/microchip.png)](https://www.microchip.com)
 
-# Getting Started With the 8-bit MDFU Client for AVR128DA48 Using MPLAB&reg; X
+# Getting Started With the 8-bit MDFU Client for AVR128DA48 Using MCP2222 and pymdfu
 
-This example demonstrates how to utilize the MPLAB Code Configurator (MCC) generated code to set up various basic Microchip Device Firmware Update (MDFU) bootloader solutions for the AVR128DA48 Curiosity Nano Evaluation board.
+This document describes the validated setup for using the **8-bit MDFU Client** on the **AVR128DA48 Curiosity Nano Evaluation Board** with the **MCP2222 USB bridge** and the `pymdfu` host tool.
 
-The MDFU is a firmware update system that employs a device-independent host application to update application firmware. The application image loaded into the host adheres to a custom file format, incorporating device and application-specific parameters necessary for the update. This repository offers a foundational setup to configure and customize the MCC Melody 8-Bit MDFU Client library on the AVR128DA48 Curiosity Nano Evaluation board, along with instructions for executing the examples.
+The setup covers firmware update over the following communication protocols:
 
-This example demonstrates:
-- How to configure the 8-Bit MDFU Client Library in MCC Melody for different verification schemes
-- How to create a simple Blinky LED application
-- How to use the [`pyfwimagebuilder`](https://pypi.org/project/pyfwimagebuilder/) command line interface to convert the application hex file into an application image
-- How to use the [`pymdfu`](https://pypi.org/project/pymdfu/) command line interface to update the application firmware
+- UART using MCP2222 CDC/serial interface
+- SPI using MCP2222 USB-to-SPI bridge
+- I<sup>2</sup>C using MCP2222 USB-to-I<sup>2</sup>C bridge
+
+The MDFU client/bootloader runs on the AVR128DA48 target. The PC-side `pymdfu` tool sends an MDFU application image to the bootloader through MCP2222. The bootloader receives the image, validates it, and programs it into the AVR128DA48 application flash region.
+
+This setup demonstrates:
+
+- How to use the AVR128DA48 MDFU client projects for UART, SPI, and I<sup>2</sup>C
+- How to program the MDFU client/bootloader onto the AVR128DA48 Curiosity Nano
+- How to connect MCP2222 to AVR128DA48 for UART, SPI, and I<sup>2</sup>C
+- How to use `pymdfu` with MCP2222 to update the application firmware
+- How to verify a successful MDFU update
+
+---
 
 ## Related Documentation
 
 - [AVR128DA48 Family Product Page](https://www.microchip.com/en-us/product/AVR128DA48)
-- [8-Bit MDFU Client v1.1.0 Release Note](https://onlinedocs.microchip.com/v2/keyword-lookup?keyword=RELEASE_NOTES_8BIT_MDFU_CLIENT_LIBRARY&version=latest&redirect=true)
-- [Getting Started Document, API Reference and Update Image Specification](https://onlinedocs.microchip.com/v2/keyword-lookup?keyword=8BIT_MDFU_CLIENT&version=latest&redirect=true)
-- [8-Bit MDFU Client Known Issues List](https://onlinedocs.microchip.com/v2/keyword-lookup?keyword=KNOWN_ISSUES_8BIT_MDFU_CLIENT&version=latest&redirect=true)
+- [AVR128DA48 Curiosity Nano](https://www.microchip.com/en-us/development-tool/DM164151)
+- [8-Bit MDFU Client Documentation](https://onlinedocs.microchip.com/v2/keyword-lookup?keyword=8BIT_MDFU_CLIENT&version=latest&redirect=true)
+- [pymdfu on PyPI](https://pypi.org/project/pymdfu/)
+- [pyfwimagebuilder on PyPI](https://pypi.org/project/pyfwimagebuilder/)
+
+---
 
 ## Software Used
 
-- [MPLAB® X IDE 6.20.0](https://www.microchip.com/en-us/tools-resources/develop/mplab-x-ide)
-- [MPLAB® XC8 2.50.0](https://www.microchip.com/en-us/tools-resources/develop/mplab-xc-compilers)
-- [MPLAB® Code Configurator (MCC) 5.5.1](https://www.microchip.com/mplab/mplab-code-configurator)
-- [MPLAB® Code Configurator (MCC) Device Libraries PIC10/12/16/18 microcontrollers (MCUs)](https://www.microchip.com/en-us/tools-resources/develop/libraries/microchip-libraries-for-applications)
-- [Python 3.8 or later](https://www.python.org/downloads/)
-- [pyfwimagebuilder v1.0.1](https://pypi.org/project/pyfwimagebuilder/)
-- [pymdfu v2.4.0](https://pypi.org/project/pymdfu/)
+The following tools were used or referenced during validation:
+
+- MPLAB&reg; X IDE
+- MPLAB&reg; XC8 Compiler
+- MPLAB&reg; Code Configurator (MCC) Melody
+- Python 3.11
+- `pymdfu` from the updated `develop` branch
+- MCP2222 firmware project
+
+Validated `pymdfu` version:
+
+```text
+pymdfu version 2.9.0.0+snapshot
+MDFU protocol version 1.3.0
+```
+
+The working `pymdfu.exe` path was:
+
+```text
+C:\Users\I73904\AppData\Roaming\Python\Python311\Scripts\pymdfu.exe
+```
+
+To verify that the installed `pymdfu` supports MCP2222:
+
+```cmd
+C:\Users\I73904\AppData\Roaming\Python\Python311\Scripts\pymdfu.exe tools-help
+```
+
+The output must include:
+
+```text
+Microchip Mcp2222 USB to I2C/SPI bridge
+```
+
+---
 
 ## Hardware Used
 
-- AVR128DA48 Curiosity Nano [(DM164151)](https://www.microchip.com/en-us/development-tool/DM164151)
+- AVR128DA48 Curiosity Nano Evaluation Board
+- MCP2222 USB bridge board
+- PC running Windows
+- Jumper wires for UART, SPI, and I<sup>2</sup>C connections
+
+AVR128DA48 Curiosity Nano:
 
 [![AVR128DA48_CNano](images/230928-mcu8-photo-dm164151-front-transparent.PNG)](images/230928-mcu8-photo-dm164151-front-transparent.PNG)
 
-## Setup
+---
 
-The following project setup steps will demonstrate the basic configuration steps for setting up the 8-Bit MDFU Client with Universal Asynchronous Receiver and Transmitter (UART) communication. The configuration bits, clock, Non-Volatile Memory (NVM), and General Purpose Input/Output (GPIO) settings will be consistent across all examples in this repository and any deviations from this setup due to the chosen communication protocol will be described individually later in this section.
+## System Overview
 
-> **Tip**: The values mentioned below are relevant for AVR128DA48, and in case of any other device, these values need to be updated according to the device specifications.
+The complete update path is:
 
-### [Client Setup](#client-setup)
-[![mdfu-builder](images/ProjectConfigurationOverview.PNG)](images/ProjectConfigurationOverview.PNG)
+```text
+PC
+ |
+ | pymdfu
+ |
+USB
+ |
+MCP2222 USB bridge
+ |
+ | UART / SPI / I2C
+ |
+AVR128DA48 Curiosity Nano
+ |
+MDFU client / bootloader
+ |
+Application flash
+```
 
-**Clock Control**
-- Prescaler Enable: Disabled
-- Internal Oscillator Frequency: 8_MHz or higher
-
-[![CLK](images/ClockSetup.PNG)](images/ClockSetup.PNG)
-
-**Configuration Bits**
-
-On Configuration Bits UI, configure the BOOT FUSE to an acceptable size.
-For example, if the Program Flash Memory size is 0x20000, then the BOOT FUSE for an AVR&reg; device with a page size of 512 would need to be 254 (one less than the MAX). This will initialize the bootloader code partition to be in the address range from 0x00 to 0x1FC00. This will leave one page in the application code partition.
-
-For AVR128DA48,
-- BOOTSIZE: 254
-
-The value needs to be set to 254 only initially, to know the Flash memory consumed by the bootloader. Upon configuring and building bootloader for the first time, this size can be reduced according to the memory consumed by bootloader. This value can then be configured to set application address as the next valid page start address after the amount of memory consumed by bootloader.
-
-For example, if the number of bytes consumed by bootloader is 0x1367h, then setting the BOOTSIZE to 10 will configure application start address to 0x1400h, allowing the bootloader Flash space to be enough to successfully store the bootloader code.
-
-[![CFG](images/ConfigBitsSetup.PNG)](images/ConfigBitsSetup.PNG)
-
-**NVM**
-- Generate Flash APIs: Enabled
-- Generate EEPROM APIs: Enabled
-- Generate Signature Row APIs: Enabled
-
-[![NVM](images/NVMSetup.PNG)](images/NVMSetup.PNG)
-
-**8-Bit MDFU Client**
-
-This section will guide you through the setup process for UART communication. For more details on configuring and operating other communication protocols, please refer to the pages listed below
-- [SPI Communication](spi/README.md)
-- [I<sup>2</sup>C Communication](i2c/README.md)
-
-**8-Bit MDFU Client with UART Communication**
-
-- Communication Protocol: UART
-- Application Start Address: Different for each project based on the verification selected
-- Device ID: 0x1E9708 (automatically added)
-- I/O Pin Indicator: Enabled
-- I/O Pin Entry: Enabled
-- Memory Verification: Assigned based on the example project naming convention
-
-> **Tip**: This example is for Checksum verification.
-
-[![MDFU](images/MDFUClientSetup.PNG)](images/MDFUClientSetup.PNG)
-
-**UART**
-- Custom Name: SERCOM
-- Requested Baudrate: 9600
-- Parity: None
-- Data Size: 8
-- Stop Bits: 1
-- Flow Control Mode: None
-- Redirect Printf to UART: Disabled
-- Interrupt Driven: Disabled
-
-[![UART](images/UARTDriverSetup.PNG)](images/UARTDriverSetup.PNG)
-
-**USART PLIB**
-- Enable UART Receiver: Enabled
-- Enable UART Transmitter: Enabled
-
-[![UART_PLIB](images/UARTPLIBSetup.PNG)](images/UARTPLIBSetup.PNG)
-
-**UART Pins**
-- UART TX: PC0
-- UART RX: PC1
-  - Pull-up: Enabled
-
-[![UART_Pins](images/UARTPortsSetup.PNG)](images/UARTPortsSetup.PNG)
-
-**8-Bit MDFU Client I/O**
-
-Upon enabling both I/O Options from the 8-Bit MDFU Client module, the INDICATE and ENTRY pin rows will be automatically loaded in the **Pin Grid View** tab. 
-
-Configure these pins as follows:
-
-- BOOT INDICATE: PC6
-  - Start High: Enabled
-- BOOT ENTRY: PC7
-  - Pull-up: Enabled
-
-[![IO-Pins](images/IOPortSetup.PNG)](images/IOPortSetup.PNG)
-
-[![IO-Settings](images/IOPinsSetup.PNG)](images/IOPinsSetup.PNG)
-
-**Updating Application Start Address**
-
-- At this point, the BOOTFUSE configuration bit is configured to 254 which results in application start address to be configured as:
-
-[![Max Boot Size](images/MaxBootSize.png)](images/MaxBootSize.png)
-
-- After this, upon generating and performing clean and build, the bytes of memory consumed by the bootloader can be observed in the dashboard window
-
-[![Build Memory Consumption](images/BuildMemoryConsumption.png)](images/BuildMemoryConsumption.png)
-
-- Next step is to update the BOOTSIZE fuse so that the application start address will be the next page start address in Flash after the memory consumed by the bootloader code. For more information on the BOOTSIZE and CODESIZE fuses, go to *NVMCTRL>Functional Description>Memory Organization* section in the [AVR128DA48 data sheet](https://www.microchip.com/en-us/product/AVR128DA48).
-
-- Since this code example consumes 0x13A0, the application start address needs to be configured to 0x1400. This is achieved by setting the BOOTSIZE to 10.
-
-[![Updated Boot Size](images/UpdatedBootSize.png)](images/UpdatedBootSize.png)
-
-- After updating the application start address, final configurations must be as mentioned below 
-
-[![MDFU](images/MDFUClientSetup.PNG)](images/MDFUClientSetup.PNG)
-
-
-**8-Bit MDFU Client Project Properties**
-
-Configure the linker options to ensure the bootloader is compiled within the BOOT partition. The specific steps for this configuration vary based on the compiler being used.
-
-> **Tip**: These values can be copied from the "Linker Options" section of 8-Bit MDFU Client MCC UI.
-
-*AVR-GCC:*
-
-- Navigate to the *Project Properties>Avr GCC (Global Options)>avr-ld>Additional options*
-- Apply the below settings where `<Application Start Address>` is the start address of the application.
- ```
-  -Wl,--defsym,__TEXT_REGION_LENGTH__=<Application Start Address>
- ```
-
-*XC8:*
-
-- Navigate to the *Project Properties>XC8 Linker>Additional Options>Extra Linker Options*
-- Apply the below settings where `<Application Start Address>` represents the start address of the application
- ```
-  -Wl,--defsym,__TEXT_REGION_LENGTH__=<Application Start Address>
- ```
-
-Replace the `<Application Start Address>` to the Application Start Address value as configured in the MDFU Client UI.
-
-[![IO-Settings](images/LinkerSettings.PNG)](images/LinkerSettings.PNG)
+The MCP2222 acts only as the communication bridge. The actual firmware update logic is implemented in the MDFU client/bootloader running on the AVR128DA48.
 
 ---
-### [Application Setup](#application-setup)
 
-This section is consistent for any example created in this repository.
+## Bootloader and Application Concept
 
-[![app-builder](images/AppConfigurationOverview.PNG)](images/AppConfigurationOverview.PNG)
+Two firmware components are involved:
 
-**I/O Pins**
-- GPIO Output: PC6
-  - Custom Name: LED
-
-- GPIO Input: PC7
-  - Custom Name: BTN
-
-[![app_io](images/AppPortSetup.PNG)](images/AppPortSetup.PNG)
-
-[![app_io_settings](images/LEDSetup.PNG)](images/LEDSetup.PNG)
-
-**End Application**
-
- * Open `main.c`
- * Add logic inside the while loop to toggle the on-board LED with a 200 ms rate
- * Add logic under that to reset the device if the BTN is pressed
-```
-while(1)
-{    
-    LED_Toggle();
-    DELAY_milliseconds(200U);
-
-    if (BTN_GetValue() == 0U)
-    {
-        RSTCTRL_reset();
-    }
-}
+```text
+1. MDFU client / bootloader
+2. Application image
 ```
 
- * Include the `delay.h` header file
- * At the top of the main file before the main function, copy and paste the following code:
+### MDFU Client / Bootloader
 
- > **Tip**: The address presented below in the __at() is PROGMEM_SIZE - 2 since the hash size used is two bytes. In case of CRC32, the 0xFFFF at the end will be 0xFFFFFFFF, since CRC32 requires four bytes instead of two.
+The MDFU client/bootloader is programmed first using MPLAB X and the Curiosity Nano onboard debugger/nEDBG.
+
+It is responsible for:
+
+- Receiving MDFU commands from `pymdfu`
+- Receiving the application image
+- Writing the application image into flash
+- Validating the image
+- Starting the application after successful update
+
+### Application Image
+
+The application image is the `.img` file sent later using `pymdfu`.
+
+The `.img` file is not programmed directly through MPLAB X. It is transferred through MDFU using UART, SPI, or I<sup>2</sup>C.
+
+Use matching bootloader and application image pairs:
+
+```text
+UART CRC32 bootloader -> UART CRC32 application image
+SPI CRC32 bootloader  -> SPI CRC32 application image
+I2C CRC32 bootloader  -> I2C CRC32 application image
 ```
-#include <stdint.h>
-#ifdef __XC8__
-#include <xc.h>
-#endif
 
-volatile const uint16_t
-#ifdef __XC8__
-__at(0x1FFFE)
-#endif
-applicationFooter __attribute__((used, section("application_footer"))) = 0xFFFF;
+---
+
+## Project Locations
+
+### UART MDFU Client Project
+
+```text
+C:\Users\I73904\Downloads\avr128da48-cnano-8bit-mdfu-client-mplab-mcc-master\avr128da48-cnano-8bit-mdfu-client-mplab-mcc-master\uart\crc32\avr128da48-mdfu-client-crc32.X
 ```
 
-**Project Properties**
+### SPI MDFU Client Project
 
-*Linker Settings*
+```text
+C:\Users\I73904\Downloads\avr128da48-cnano-8bit-mdfu-client-mplab-mcc-master\avr128da48-cnano-8bit-mdfu-client-mplab-mcc-master\spi\avr128da48-mdfu-client-crc32.X
+```
 
-This step is different depending on the used compiler.
+### I<sup>2</sup>C MDFU Client Project
 
-*AVR-GCC*
- * When using the AVR-GCC compiler, open the project properties and apply the below settings
-   ```
-    - avr-ld>Memory Settings>FLASH segment> .text=<Application_Start_Address_in_words>
-    - avr-ld>Additional Options=-Wl,-u,applicationFooter
-   ```
+```text
+C:\Users\I73904\Downloads\avr128da48-cnano-8bit-mdfu-client-mplab-mcc-master\avr128da48-cnano-8bit-mdfu-client-mplab-mcc-master\i2c\avr128da48-mdfu-client-crc32.X
+```
 
-> **Tip**: AVR-GCC accepts word addresses, so if it is set 0x4000 in the bootloader, it must be set to 0x2000 here.
+---
 
-*XC8*
- * When using the XC8 compiler, open the project properties and apply the below settings:
+## Bootloader HEX Files
 
-  Go to *XC8 Global Options>XC8 Linker>Option Categories* and select 'Additional options' from the drop-down menu. Copy and paste the following line into the **Extra linker options** box:
+### UART Bootloader HEX
 
-  *-Ttext=\<Application Start Address\> -Wl,-u,applicationFooter*
+```text
+C:\Users\I73904\Downloads\avr128da48-cnano-8bit-mdfu-client-mplab-mcc-master\avr128da48-cnano-8bit-mdfu-client-mplab-mcc-master\uart\crc32\avr128da48-mdfu-client-crc32.X\dist\free\production\avr128da48-mdfu-client-crc32.X.production.hex
+```
 
-  [![app_io_settings](images/appLinkerSettings.PNG)](images/appLinkerSettings.PNG) 
+### SPI Bootloader HEX
 
-  Go to *XC8 Global Options>XC8 Compiler>Option Categories* and select 'Preprocessing and messages' from the drop-down menu. Check the box next to **Use CCI Syntax**.
-   
-  [![app_io_settings](images/appCompilerSettings.PNG)](images/appCompilerSettings.PNG)
+```text
+C:\Users\I73904\Downloads\avr128da48-cnano-8bit-mdfu-client-mplab-mcc-master\avr128da48-cnano-8bit-mdfu-client-mplab-mcc-master\spi\avr128da48-mdfu-client-crc32.X\dist\free\production\avr128da48-mdfu-client-crc32.X.production.hex
+```
 
-**Post Build Actions**
+### I<sup>2</sup>C Bootloader HEX
 
- * Create a new script file called `postBuild.bat` (for Windows) or `postBuild.sh` (for Mac or Linux)
+```text
+C:\Users\I73904\Downloads\avr128da48-cnano-8bit-mdfu-client-mplab-mcc-master\avr128da48-cnano-8bit-mdfu-client-mplab-mcc-master\i2c\avr128da48-mdfu-client-crc32.X\dist\free\production\avr128da48-mdfu-client-crc32.X.production.hex
+```
 
-   - The postBuild file can be created by right-clicking the project folder in the **MPLAB X Projects** tab and navigating to:
-    *New>Other...> Other>Empty File*
-   - Enter the name postBuild for File Name and add your required extension (`.bat` or `.sh`)
-   - Click **Finish**
-   - A new file named `postBuild.bat` or `postBuild.sh` will be displayed
-   - Copy the following lines into the script file:
-      1. To fill unused space:
+---
 
-          `hexmate r0-FFFFFFFF,%1 -O%1 -FILL=w1:0xFF@0x1400:0x1FFFF` - 0x1400 corresponds to the application start address and 0x1FFFF to Flash End Address(Flash size -1).
-        
-        2. To perform the calculation and store the result: 
-        
-        > **Tip**: Reset Vector and Status Byte do not require this line.
+## Application Image Files
 
-   
-      |Verification | Code | Description |
-      |- |- |- |
-      |Checksum | hexmate %1 -O%1 +-CK=1400-1FFFD@1FFFEg2w-2 | 0x1400 corresponds to the application start address and 0x1FFFE is to Flash size - 2, since the checksum requires two bytes. This command is taking the range from 0x1400-@1FFFD of the application, calculating its checksum and storing it at 0x1FFFE. |
-      |CRC16 | hexmate %1 -O%1 +-CK=1400-1FFFD@1FFFE+FFFFg5w-2p1021 |0x1400 corresponds to the application start address and 0x1FFFE is to Flash size - 2, since the CRC16 hash requires two bytes. This command is taking the range from 0x1400-@1FFFD of the application, calculating CRC16 hash on the data and storing it at 0x1FFFE. |
-      |CRC32 |hexmate %1 -O%1 +-CK=1400-1FFFB@1FFFC+FFFFFFFFg-5w-4p04C11DB7 |0x1400 corresponds to the application start address and 0x1FFFC is to Flash size - 4, since CRC32 hash requires four bytes. This command is taking the range from 0x1400-@1FFFB of the application, calculating CRC32 hash on the data and storing it at 0x1FFFC. |
+### UART Application Image
 
-   - Add the path to MPLAB X which contains the hexmate application to the environment variable **PATH**
-   
-    Example path (default):  C:\Program Files\Microchip\MPLABX\v6.20\mplab_platform\bin
+```text
+C:\Users\I73904\Downloads\avr128da48-cnano-8bit-mdfu-client-mplab-mcc-master\avr128da48-cnano-8bit-mdfu-client-mplab-mcc-master\uart\crc32\avr128da48-application-crc32.X\new_application.img
+```
 
-    > **Tip**: More information on hexmate can be found in the Hexmate User Guide packaged with the compiler docs. It can be found in the docs folder for compiler version under use. 
- 
- * Compile the project
- * Running the postBuild script
-     
-     Open a command prompt window within the project folder and run the following command with appropriate parameters:
-   - Command Format: <code>postBuild${ShExtension} ${ImagePath}</code>
-   - Example path: ```.\postBuild.bat avr128da48-application-crc32.X.production.hex```
+### SPI Application Image
+
+```text
+C:\Users\I73904\Downloads\avr128da48-cnano-8bit-mdfu-client-mplab-mcc-master\avr128da48-cnano-8bit-mdfu-client-mplab-mcc-master\spi\avr128da48-application-crc32.X\new_application.img
+```
+
+### I<sup>2</sup>C Application Image
+
+```text
+C:\Users\I73904\Downloads\avr128da48-cnano-8bit-mdfu-client-mplab-mcc-master\avr128da48-cnano-8bit-mdfu-client-mplab-mcc-master\i2c\avr128da48-application-crc32.X\new_application.img
+```
+
+---
+
+## MCP2222 Firmware Reference
+
+The MCP2222 firmware project used as reference is located at:
+
+```text
+D:\ASSP\repos\mcp2222-firmware-RC5\mcp2222_firmware.X
+```
+
+During testing, `pymdfu` detected the MCP2222 as:
+
+```text
+VID: 04d8
+PID: 0b15
+Product Name: MCP2222 USB Bridge
+```
+
+---
+
+## Hardware Setup
+
+## SPI Hardware Setup
+
+The SPI MDFU project uses SPI0 on the AVR128DA48.
+
+Validated SPI wiring:
+
+```text
+MCP2222 SCK   -> AVR128DA48 PA6 / SPI0 SCK
+MCP2222 MOSI  -> AVR128DA48 PA4 / SPI0 MOSI
+MCP2222 MISO  -> AVR128DA48 PA5 / SPI0 MISO
+MCP2222 CS0   -> AVR128DA48 PA7 / SPI0 SS
+MCP2222 GND   -> AVR128DA48 GND
+```
+
+Validated SPI settings:
+
+```text
+Clock speed: 375000 Hz
+SPI mode: 0
+CS pin: 0
+CS polarity: low
+Delay: 500 us
+```
+
+---
+
+## UART Hardware Setup
+
+The UART MDFU client project uses:
+
+```text
+USART1
+Baudrate: 9600
+```
+
+The generated UART initialization contains:
+
+```c
+USART1.BAUD = (uint16_t)USART1_BAUD_RATE(9600UL);
+```
+
+The UART pins are:
+
+```text
+USART1 TXD -> PC0
+USART1 RXD -> PC1
+```
+
+Validated UART wiring:
+
+```text
+MCP2222 TXD  -> AVR128DA48 PC1 / USART1 RXD
+MCP2222 RXD  -> AVR128DA48 PC0 / USART1 TXD
+MCP2222 GND  -> AVR128DA48 GND
+```
+
+Important:
+
+```text
+UART TX and RX must be crossed.
+MCP2222 TXD connects to AVR RXD.
+MCP2222 RXD connects to AVR TXD.
+```
+
+---
+
+## I<sup>2</sup>C Hardware Setup
+
+The I<sup>2</sup>C MDFU project uses TWI0.
+
+The generated pin configuration contains:
+
+```c
+PORTMUX.TWIROUTEA = 0x2;
+```
+
+This routes TWI0 to PORTC pins.
+
+Expected I<sup>2</sup>C wiring:
+
+```text
+MCP2222 SDA  -> AVR128DA48 PC2 / TWI0 SDA
+MCP2222 SCL  -> AVR128DA48 PC3 / TWI0 SCL
+MCP2222 GND  -> AVR128DA48 GND
+```
+
+I<sup>2</sup>C pull-ups are required on SDA and SCL.
+
+If the board does not already provide pull-ups, use external pull-ups, for example:
+
+```text
+SDA -> 4.7 kΩ -> VCC
+SCL -> 4.7 kΩ -> VCC
+```
+
+I<sup>2</sup>C address used:
+
+```text
+Decimal: 32
+Hex:     0x20
+```
+
+---
+
+## Setup
+
+## Client Setup
+
+For each protocol, first open and program the corresponding MDFU client/bootloader project using MPLAB X.
+
+### UART Client Setup
+
+Open:
+
+```text
+uart\crc32\avr128da48-mdfu-client-crc32.X
+```
+
+Program the project to the AVR128DA48 Curiosity Nano.
+
+Use the UART wiring:
+
+```text
+MCP2222 TXD -> PC1 / USART1 RXD
+MCP2222 RXD -> PC0 / USART1 TXD
+MCP2222 GND -> GND
+```
+
+Use baudrate:
+
+```text
+9600
+```
+
+---
+
+### SPI Client Setup
+
+Open:
+
+```text
+spi\avr128da48-mdfu-client-crc32.X
+```
+
+Program the project to the AVR128DA48 Curiosity Nano.
+
+Use the SPI wiring:
+
+```text
+MCP2222 SCK  -> PA6 / SPI0 SCK
+MCP2222 MOSI -> PA4 / SPI0 MOSI
+MCP2222 MISO -> PA5 / SPI0 MISO
+MCP2222 CS0  -> PA7 / SPI0 SS
+MCP2222 GND  -> GND
+```
+
+Use SPI settings:
+
+```text
+Clock speed: 375000 Hz
+Mode: 0
+CS pin: 0
+CS polarity: low
+Delay: 500 us
+```
+
+---
+
+### I<sup>2</sup>C Client Setup
+
+Open:
+
+```text
+i2c\avr128da48-mdfu-client-crc32.X
+```
+
+Program the project to the AVR128DA48 Curiosity Nano.
+
+Use the I<sup>2</sup>C wiring:
+
+```text
+MCP2222 SDA -> PC2 / TWI0 SDA
+MCP2222 SCL -> PC3 / TWI0 SCL
+MCP2222 GND -> GND
+```
+
+Use I<sup>2</sup>C settings:
+
+```text
+Clock speed: 100000 Hz
+Address: 32 decimal / 0x20 hex
+```
+
+---
+
+## Application Setup
+
+For each protocol, build the matching application project and generate the `.img` file.
+
+Use the matching image for each bootloader:
+
+```text
+UART bootloader -> uart\crc32\avr128da48-application-crc32.X\new_application.img
+SPI bootloader  -> spi\avr128da48-application-crc32.X\new_application.img
+I2C bootloader  -> i2c\avr128da48-application-crc32.X\new_application.img
+```
+
+Do not mix images from a different protocol folder unless the bootloader configuration and image configuration are known to be compatible.
+
+---
 
 ## Operation
-This section is a walkthrough on how to run the examples in this repository. This example shows how to execute the Checksum verification example and update the device Flash memory with the Checksum application image to demonstrate a successful device firmware update (DFU). For additional communication protocol operation information, refer to the pages listed below:
-- [SPI Example Operation](spi/README.md#operation)
-- [I<sup>2</sup>C Example Operation](i2c/README.md#operation)
 
-**8-Bit MDFU Client Operation**
+The general operation is:
 
-1. Open the MDFU client project.
+1. Program the required MDFU client/bootloader project using MPLAB X.
+2. Connect MCP2222 to the AVR128DA48 using the correct protocol wiring.
+3. Run `client-info` to verify communication.
+4. Run `update` to transfer the application image.
+5. Confirm that the update ends with:
 
-[![OpenMDFUProject](images/openProjectMDFU.PNG)](images/openProjectMDFU.PNG)
+```text
+Upgrade finished successfully
+```
 
-2. Set MDFU client project as Main Project.
+---
 
-[![OpenMDFUProject](images/setAsMainProject.png)](images/setAsMainProject.png)
+## UART Operation
 
-3. Right click, then select Clean and Build.
+### UART Client Info
 
-[![CleanBuild](images/CleanAndBuildMDFU.png)](images/CleanAndBuildMDFU.png)
+Run this first:
 
-4. Program the MDFU client project.
+```cmd
+C:\Users\I73904\AppData\Roaming\Python\Python311\Scripts\pymdfu.exe -v debug client-info --tool serial --port COM29 --baudrate 9600
+```
 
-[![ProgramMDFU](images/ProgramMDFU.png)](images/ProgramMDFU.png)
+Expected result:
 
-**Bootloader Operation After Initial Programming**
+```text
+MDFU client information
+```
 
-After the initial programming, the LED must be on.
+### UART Firmware Update
 
-[![MDFU_BootMode](images/AVR128DA48_BootMode.png)](images/AVR128DA48_BootMode.png)
+```cmd
+C:\Users\I73904\AppData\Roaming\Python\Python311\Scripts\pymdfu.exe -v debug update --tool serial --port COM29 --baudrate 9600 --image "C:\Users\I73904\Downloads\avr128da48-cnano-8bit-mdfu-client-mplab-mcc-master\avr128da48-cnano-8bit-mdfu-client-mplab-mcc-master\uart\crc32\avr128da48-application-crc32.X\new_application.img"
+```
 
-**Application Operation**
-1. Open the application project that is configured for the selected verification scheme.
+Expected success message:
 
-[![OpenAppProject](images/openProjectApp.PNG)](images/openProjectApp.PNG)
+```text
+Upgrade finished successfully
+```
 
-2. Set the application project as the Main Project.
+---
 
-[![MainAppProject](images/setAppAsMainProject.png)](images/setAppAsMainProject.png)
+## SPI Operation
 
-3. Build the required application project.
+### SPI Client Info
 
-- Navigate to the Building section of the application Project Properties window and enable the "Execute this line after build" checkbox
+Run this first:
 
-[![EnablePostBuild_App](images/EnablePostBuildApp.PNG)](images/EnablePostBuildApp.PNG)
+```cmd
+C:\Users\I73904\AppData\Roaming\Python\Python311\Scripts\pymdfu.exe -v debug client-info --tool mcp2222 --interface spi --clk-speed 375_000 --mode 0 --cs-pin 0 --cs-polarity low --delay 500
+```
 
-- Right click the project name, then select Clean and Build
+Expected result:
 
-[![CleanBuild_App](images/CleanAndBuildApp.png)](images/CleanAndBuildApp.png)
+```text
+MDFU client information
+```
 
-4. Build the Application Image File using [pyfwimagebuilder](https://pypi.org/project/pyfwimagebuilder/).
+Observed client information during validation:
 
-- To build the application image files, navigate to the Projects tab and right click *Important Files>`build_free_image.bat`* for Windows or *Important Files>`build_free_image.sh`* for Mac and Linux
-- Select Run
+```text
+MDFU protocol version: 1.2.0
+Number of command buffers: 1
+Maximum packet data length: 527 bytes
+Inter transaction delay: 0.0015 seconds
+Default timeout: 10.0 seconds
+```
 
-[![Run_BuildScript](images/RunBuildScript.PNG)](images/RunBuildScript.PNG)
+### SPI Firmware Update
 
-> **Tip**: The configuration TOML file is generated by the MDFU Client project under `mcc_generated_files\bootloader\configurations`.
+```cmd
+C:\Users\I73904\AppData\Roaming\Python\Python311\Scripts\pymdfu.exe -v debug update --tool mcp2222 --interface spi --image "C:\Users\I73904\Downloads\avr128da48-cnano-8bit-mdfu-client-mplab-mcc-master\avr128da48-cnano-8bit-mdfu-client-mplab-mcc-master\spi\avr128da48-application-crc32.X\new_application.img" --clk-speed 375_000 --mode 0 --cs-pin 0 --cs-polarity low --delay 500
+```
 
-[![toml_PATH](images/toml_PATH.png)](images/toml_PATH.png)
+Expected success message:
 
-**Example Command:**
+```text
+Upgrade finished successfully
+```
 
-`pyfwimagebuilder build -i "application_hex_file.hex"  -c "bootloader_configuration.toml" -o output.img`
+Validated SPI update result:
 
-[![build_img](images/BuildTheImage.png)](images/BuildTheImage.png)
+```text
+Update Progress: 100%
+pymdfu.pymdfu - INFO - Upgrade finished successfully
+```
 
-5. Use the [pymdfu](https://pypi.org/project/pymdfu/) host tool to transfer the application image file to the bootloader.
+During the successful SPI update, the following MDFU command sequence was observed:
 
-> **Tip**: The COM port of the MCU is found using the MPLAB Data Visualizer.
+```text
+GET_CLIENT_INFO
+START_TRANSFER
+WRITE_CHUNK
+GET_IMAGE_STATE
+END_TRANSFER
+```
 
-- To run the update with the examples, navigate to the Project tab and right click, *Important Files>`pymdfu_update.bat`* for Windows or *Important Files>`pymdfu_update.sh`* for Mac and Linux. Double click to open the file.
-- Edit the port number to the CDC port name that is assigned to the Curiosity Nano device
-- Then right click the script and select Run
+The image state returned:
 
-[![UpdateScript_BL](images/runUpdateScript.PNG)](images/runUpdateScript.PNG)
+```text
+Data: 0x01
+```
 
-**Example Command:**
+This indicates that the received image was valid.
 
-`pymdfu update --tool serial --image ./output.img --baudrate 9600 --port COM##`
+---
 
-[![transfer_img](images/SendTheImage.PNG)](images/SendTheImage.PNG)
+## I<sup>2</sup>C Operation
 
-**Application Has Been Updated Successfully**
+### I<sup>2</sup>C Client Info
 
-[![MDFU_AppMode](images/AVR128DA48_AppMode.gif)](images/AVR128DA48_AppMode.gif)
+Run this first:
 
-**Example Application Features:**
+```cmd
+C:\Users\I73904\AppData\Roaming\Python\Python311\Scripts\pymdfu.exe -v debug client-info --tool mcp2222 --interface i2c --clk-speed 100_000 --address 32
+```
 
-1. Blink the on-board LED at a rate of 200 ms.
-2. Pressing the button on the Curiosity Nano and holding it down will force entry into bootloader, allowing a new application to be transferred.
+Equivalent address format:
+
+```cmd
+--address 0x20
+```
+
+### I<sup>2</sup>C Firmware Update
+
+```cmd
+C:\Users\I73904\AppData\Roaming\Python\Python311\Scripts\pymdfu.exe -v debug update --tool mcp2222 --interface i2c --clk-speed 100_000 --address 32 --image "C:\Users\I73904\Downloads\avr128da48-cnano-8bit-mdfu-client-mplab-mcc-master\avr128da48-cnano-8bit-mdfu-client-mplab-mcc-master\i2c\avr128da48-application-crc32.X\new_application.img"
+```
+
+Expected success message:
+
+```text
+Upgrade finished successfully
+```
+
+---
+
+## Supported MCP2222 Clock Speeds
+
+## SPI Clock Speeds
+
+The MCP2222 SPI interface supports:
+
+```text
+187500 Hz
+375000 Hz
+750000 Hz
+1500000 Hz
+3000000 Hz
+6000000 Hz
+12000000 Hz
+```
+
+Known-good validated SPI speed:
+
+```text
+375000 Hz
+```
+
+Known-good validated SPI command:
+
+```cmd
+C:\Users\I73904\AppData\Roaming\Python\Python311\Scripts\pymdfu.exe -v debug update --tool mcp2222 --interface spi --image "C:\Users\I73904\Downloads\avr128da48-cnano-8bit-mdfu-client-mplab-mcc-master\avr128da48-cnano-8bit-mdfu-client-mplab-mcc-master\spi\avr128da48-application-crc32.X\new_application.img" --clk-speed 375_000 --mode 0 --cs-pin 0 --cs-polarity low --delay 500
+```
+
+---
+
+## I<sup>2</sup>C Clock Speeds
+
+The MCP2222 I<sup>2</sup>C interface supports:
+
+```text
+100000 Hz
+400000 Hz
+1000000 Hz
+```
+
+Recommended initial I<sup>2</sup>C test speed:
+
+```text
+100000 Hz
+```
+
+Known command format:
+
+```cmd
+C:\Users\I73904\AppData\Roaming\Python\Python311\Scripts\pymdfu.exe -v debug update --tool mcp2222 --interface i2c --clk-speed 100_000 --address 32 --image "C:\Users\I73904\Downloads\avr128da48-cnano-8bit-mdfu-client-mplab-mcc-master\avr128da48-cnano-8bit-mdfu-client-mplab-mcc-master\i2c\avr128da48-application-crc32.X\new_application.img"
+```
+
+---
+
+## UART Baudrate
+
+The UART MDFU client uses:
+
+```text
+9600 baud
+```
+
+This was confirmed from the generated initialization code:
+
+```c
+USART1.BAUD = (uint16_t)USART1_BAUD_RATE(9600UL);
+```
+
+Known command format:
+
+```cmd
+C:\Users\I73904\AppData\Roaming\Python\Python311\Scripts\pymdfu.exe -v debug update --tool serial --port COM29 --baudrate 9600 --image "C:\Users\I73904\Downloads\avr128da48-cnano-8bit-mdfu-client-mplab-mcc-master\avr128da48-cnano-8bit-mdfu-client-mplab-mcc-master\uart\crc32\avr128da48-application-crc32.X\new_application.img"
+```
+
+---
+
+## Test Coverage
+
+## pymdfu Installation Validation
+
+Verified that the installed `pymdfu` supports MCP2222.
+
+Command:
+
+```cmd
+C:\Users\I73904\AppData\Roaming\Python\Python311\Scripts\pymdfu.exe tools-help
+```
+
+Confirmed supported tools include:
+
+```text
+serial
+mcp2222
+```
+
+---
+
+## MCP2222 Detection
+
+Verified that `pymdfu` detects the MCP2222 device.
+
+Observed output:
+
+```text
+Found 1 MCP2222 devices
+Device VID=04d8, PID=0b15
+Product Name=MCP2222 USB Bridge
+```
+
+---
+
+## SPI Client Info Test
+
+Command:
+
+```cmd
+C:\Users\I73904\AppData\Roaming\Python\Python311\Scripts\pymdfu.exe -v debug client-info --tool mcp2222 --interface spi --clk-speed 375_000 --mode 0 --cs-pin 0 --cs-polarity low --delay 500
+```
+
+Result:
+
+```text
+MDFU client information received successfully
+```
+
+---
+
+## SPI Firmware Update Test
+
+Command:
+
+```cmd
+C:\Users\I73904\AppData\Roaming\Python\Python311\Scripts\pymdfu.exe -v debug update --tool mcp2222 --interface spi --image "C:\Users\I73904\Downloads\avr128da48-cnano-8bit-mdfu-client-mplab-mcc-master\avr128da48-cnano-8bit-mdfu-client-mplab-mcc-master\spi\avr128da48-application-crc32.X\new_application.img" --clk-speed 375_000 --mode 0 --cs-pin 0 --cs-polarity low --delay 500
+```
+
+Result:
+
+```text
+Upgrade finished successfully
+```
+
+---
+
+## UART Pin and Baudrate Validation
+
+Validated UART configuration:
+
+```text
+USART1
+Baudrate: 9600
+TXD: PC0
+RXD: PC1
+```
+
+Validated wiring:
+
+```text
+MCP2222 TXD -> PC1 / USART1 RXD
+MCP2222 RXD -> PC0 / USART1 TXD
+MCP2222 GND -> GND
+```
+
+---
+
+## I<sup>2</sup>C Pin Mapping Validation
+
+Validated from generated `pins.c`:
+
+```c
+PORTMUX.TWIROUTEA = 0x2;
+```
+
+Resulting TWI0 pins:
+
+```text
+TWI0 SDA -> PC2
+TWI0 SCL -> PC3
+```
+
+Expected wiring:
+
+```text
+MCP2222 SDA -> PC2 / TWI0 SDA
+MCP2222 SCL -> PC3 / TWI0 SCL
+MCP2222 GND -> GND
+```
+
+---
+
+## Running Commands From Any Path
+
+The commands use the full path to `pymdfu.exe`:
+
+```text
+C:\Users\I73904\AppData\Roaming\Python\Python311\Scripts\pymdfu.exe
+```
+
+Therefore, the commands can be run from any directory.
+
+Example:
+
+```cmd
+cd C:\
+C:\Users\I73904\AppData\Roaming\Python\Python311\Scripts\pymdfu.exe --version
+```
+
+To use only:
+
+```cmd
+pymdfu
+```
+
+instead of the full path, add this directory to the Windows PATH:
+
+```text
+C:\Users\I73904\AppData\Roaming\Python\Python311\Scripts
+```
+
+Then open a new Command Prompt and verify:
+
+```cmd
+where pymdfu
+pymdfu --version
+```
+
+---
+
+## Known Good Summary
+
+## UART
+
+```text
+Bootloader:
+uart\crc32\avr128da48-mdfu-client-crc32.X
+
+Application:
+uart\crc32\avr128da48-application-crc32.X\new_application.img
+
+Wiring:
+MCP2222 TXD -> PC1 / USART1 RXD
+MCP2222 RXD -> PC0 / USART1 TXD
+MCP2222 GND -> GND
+
+Baudrate:
+9600
+
+Command:
+pymdfu update --tool serial --port COM29 --baudrate 9600 --image <uart image>
+```
+
+---
+
+## SPI
+
+```text
+Bootloader:
+spi\avr128da48-mdfu-client-crc32.X
+
+Application:
+spi\avr128da48-application-crc32.X\new_application.img
+
+Wiring:
+MCP2222 SCK  -> PA6 / SPI0 SCK
+MCP2222 MOSI -> PA4 / SPI0 MOSI
+MCP2222 MISO -> PA5 / SPI0 MISO
+MCP2222 CS0  -> PA7 / SPI0 SS
+MCP2222 GND  -> GND
+
+Settings:
+Clock speed: 375000 Hz
+Mode: 0
+CS pin: 0
+CS polarity: low
+Delay: 500 us
+
+Command:
+pymdfu update --tool mcp2222 --interface spi --clk-speed 375_000 --mode 0 --cs-pin 0 --cs-polarity low --delay 500 --image <spi image>
+```
+
+---
+
+## I<sup>2</sup>C
+
+```text
+Bootloader:
+i2c\avr128da48-mdfu-client-crc32.X
+
+Application:
+i2c\avr128da48-application-crc32.X\new_application.img
+
+Wiring:
+MCP2222 SDA -> PC2 / TWI0 SDA
+MCP2222 SCL -> PC3 / TWI0 SCL
+MCP2222 GND -> GND
+
+Settings:
+Clock speed: 100000 Hz
+Address: 32 decimal / 0x20 hex
+
+Command:
+pymdfu update --tool mcp2222 --interface i2c --clk-speed 100_000 --address 32 --image <i2c image>
+```
+
+---
+
+## Final Validation Criteria
+
+A firmware update is considered successful when the `pymdfu update` command ends with:
+
+```text
+Upgrade finished successfully
+```
+
+For the successful SPI update, the following was observed:
+
+```text
+Update Progress: 100%
+pymdfu.pymdfu - INFO - Upgrade finished successfully
+```
+
+A valid image state is indicated by:
+
+```text
+GET_IMAGE_STATE
+Data: 0x01
+```
+
+---
 
 ## Summary
 
-This repository demonstrates how to configure the 8-Bit MDFU Client library in MCC to enable device firmware updates over UART on a AVR128DA48 Curiosity Nano.
+This setup validates the use of the AVR128DA48 8-bit MDFU client with the MCP2222 USB bridge and `pymdfu`.
+
+The following paths were established:
+
+```text
+UART:
+PC -> MCP2222 CDC/serial -> AVR128DA48 USART1 -> MDFU client
+
+SPI:
+PC -> MCP2222 SPI -> AVR128DA48 SPI0 -> MDFU client
+
+I2C:
+PC -> MCP2222 I2C -> AVR128DA48 TWI0 -> MDFU client
+```
+
+The SPI update path was fully validated with a successful application image update. UART and I<sup>2</sup>C hardware mappings and command formats were identified for corresponding MDFU client projects.
+
+---
 
 ## Contents
 
 - [Back to Related Documentation](#related-documentation)
 - [Back to Software Used](#software-used)
 - [Back to Hardware Used](#hardware-used)
-- [Back to Setup](#setup)
+- [Back to System Overview](#system-overview)
+- [Back to Hardware Setup](#hardware-setup)
 - [Back to Operation](#operation)
+- [Back to Test Coverage](#test-coverage)
 - [Back to Summary](#summary)
-- [Back to Top](#getting-started-with-the-8-bit-mdfu-client-for-avr128da48-using-mplab-x)
+- [Back to Top](#getting-started-with-the-8-bit-mdfu-client-for-avr128da48-using-mcp2222-and-pymdfu)
